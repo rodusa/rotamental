@@ -1,14 +1,16 @@
 <script>
 	import Header from './Header.svelte';
 	import './styles.css';
+	import '../tailwind.css'
 </script>
 
-<div class="app">
+<!-- <div class="app"> -->
+	<div class="container mx-auto my-6 max-w-lg">
 	<Header />
 
-	<main>
+	<!-- <main> -->
 		<slot />
-	</main>
+	<!-- </main> -->
 
 	<footer>
 		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
@@ -22,7 +24,7 @@
 		min-height: 100vh;
 	}
 
-	main {
+	/* main {
 		flex: 1;
 		display: flex;
 		flex-direction: column;
@@ -31,7 +33,7 @@
 		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
-	}
+	} */
 
 	footer {
 		display: flex;
