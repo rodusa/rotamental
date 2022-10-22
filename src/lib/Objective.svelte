@@ -10,7 +10,7 @@ import {deleteTodo} from "../stores/objectiveStore"
     name="completed"
     type="checkbox"
     checked={objective.completed}>
-    <span class={`flex-1 text-gray-800 ${objective.completed ? 'line-through' : ''}`}>{objective.text}</span>
+    <span class={`ml-2 flex-1 text-gray-800 ${objective.completed ? 'line-through' : ''}`}>{objective.text}</span>
     
     <button 
     type="button" 
