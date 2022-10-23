@@ -1,6 +1,11 @@
 <script lang="ts">
     import {addObjective} from "../stores/objectiveStore"
     let todo = '';
+    import Chip from '$lib/chips/Chip.svelte';
+    import ChipItem from '$lib/chips/ChipItem.svelte';
+    let value = 1;
+
+
     const handleSubmit= () => {
         addObjective(todo);
         todo = '';
@@ -13,7 +18,20 @@
         <input type="text" bind:value={todo} name="todo" placeholder="Watch" class="appearance-none shadow-sm border border-gray-200 p-2 focus:outline-none focus:border-red-500 rounded-lg"/>
     </div>
     <!-- <button type="submit" class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Submit</button> -->
+    <h3>selected value<small>({value})</small></h3>
+    <Chip bind:value>
+        <ChipItem>Concurso Público</ChipItem>
+        <ChipItem>Entrevista de Emprego</ChipItem>
+    
+        <ChipItem>Exame Escolar, vestibular, etc.</ChipItem>
+        <ChipItem>Exame OAB, Medicina, etc.</ChipItem>
+        <ChipItem>Bolsa de Estudos</ChipItem>
+        <ChipItem>Outros</ChipItem>
+    </Chip>
+    <button type="submit" class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Adicionar</button>
+
 </form>
+
 <style>
     
     /* input {
