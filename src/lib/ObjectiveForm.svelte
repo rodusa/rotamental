@@ -5,12 +5,29 @@
     import ChipItem from '$lib/chips/ChipItem.svelte';
     let value = 1;
 
+	let name = 'baz'
+	let result = null;
 
     const handleSubmit= () => {
         addObjective(todo);
         todo = '';
         console.log('submitting');
     }
+
+	async function doPost () {
+		const res = await fetch('http://127.0.0.1:3000/api/v1/objectives#create', {
+			method: 'POST',
+            headers: {
+				'Content-Type': 'application/json'
+			},            
+			body: JSON.stringify({
+				name
+			})
+		})
+		
+		const json = await res.json()
+		result = JSON.stringify(json)
+	}
 </script>
 <form class="my-6" on:submit|preventDefault={handleSubmit}>
     <div class="flex flex-col text-sm mb-2">
@@ -28,7 +45,7 @@
         <ChipItem>Bolsa de Estudos</ChipItem>
         <ChipItem>Outros</ChipItem>
     </Chip>
-    <button type="submit" class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Adicionar</button>
+    <button type="submit" class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 " on:click={doPost}>Adicionar</button>
 
 </form>
 
