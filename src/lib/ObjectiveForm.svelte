@@ -5,9 +5,11 @@
     import ChipItem from '$lib/chips/ChipItem.svelte';
     let value = 1;
 
+
 	let name = 'baz'
 	let result = null;
 
+    
     const handleSubmit= () => {
         addObjective(todo);
         todo = '';
