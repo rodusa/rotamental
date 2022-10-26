@@ -15,8 +15,9 @@
     }
 
 	async function doPost () {
-		const res = await fetch('http://127.0.0.1:3000/api/v1/objectives#create', {
-			method: 'POST',
+		name = todo;
+        const res = await fetch('http://127.0.0.1:3000/api/v1/objectives#create', {
+            method: 'POST',
             headers: {
 				'Content-Type': 'application/json'
 			},            
