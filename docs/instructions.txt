@@ -1,0 +1,2 @@
+//Configuring Digital Ocean App Platform Adapter
+https://github.com/TorstenDittmann/svelte-adapter-static-digitalocean
