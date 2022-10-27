@@ -87,7 +87,10 @@
     <button type="button" on:click={openModal} class="btn">Open Modal</button>    
 </form>
 
-<MyModal bind:isModalOpen ></MyModal>
+<MyModal bind:isModalOpen >
+<p> teste</p>
+
+</MyModal>
 <style>
 	/* input {
 		border: 1px solid transparent;
