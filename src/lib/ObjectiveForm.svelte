@@ -24,13 +24,13 @@
 	async function doPost () {
 		name = todo;
         if (url.hostname.includes(LOCALHOST_ADDR)) {
-            hostname = LOCALHOST_ADDR + ":3000";
+            hostname = "http://" + LOCALHOST_ADDR + ":3000";
             console.log('1');
         }else{
-            hostname = url.hostname;
+            hostname = "https://" + url.hostname;
             console.log('2');
         }
-        const res = await fetch(`http://${hostname}/api/v1/objectives#create`, {
+        const res = await fetch(`${hostname}/api/v1/objectives#create`, {
             method: 'POST',
             headers: {
 				'Content-Type': 'application/json'
