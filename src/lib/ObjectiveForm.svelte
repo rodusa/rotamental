@@ -27,7 +27,8 @@
             hostname = "http://" + LOCALHOST_ADDR + ":3000";
             console.log('1');
         }else{
-            hostname = "https://" + url.hostname;
+            //hostname = "https://" + url.hostname;
+            hostname = "https://sea-turtle-app-57tfz.ondigitalocean.app/";
             console.log('2');
         }
         const res = await fetch(`${hostname}/api/v1/objectives#create`, {
