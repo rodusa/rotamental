@@ -1,6 +1,6 @@
 <script lang="ts">
     import { text } from "svelte/internal";
-import {deleteTodo} from "../stores/objectiveStore"
+    import {deleteTodo} from "../stores/objectiveStore"
     export let objective;
 
 </script>

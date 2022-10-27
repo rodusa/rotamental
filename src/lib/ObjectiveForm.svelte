@@ -1,14 +1,19 @@
 <script lang="ts">
-    import {addObjective} from "../stores/objectiveStore"
+    import {addObjective} from "../stores/objectiveStore";
+    import { page } from '$app/stores';
+    
+    let LOCALHOST_ADDR = "127.0.0.1";
+    let hostname = LOCALHOST_ADDR; // 
+    let url = $page.url;
+    
+
     let todo = '';
     import Chip from '$lib/chips/Chip.svelte';
     import ChipItem from '$lib/chips/ChipItem.svelte';
     let value = 1;
 
-
 	let name = 'baz'
 	let result = null;
-
     
     const handleSubmit= () => {
         addObjective(todo);
@@ -18,7 +23,14 @@
 
 	async function doPost () {
 		name = todo;
-        const res = await fetch('http://127.0.0.1:3000/api/v1/objectives#create', {
+        if (url.hostname.includes(LOCALHOST_ADDR)) {
+            hostname = LOCALHOST_ADDR + ":3000";
+            console.log('1');
+        }else{
+            hostname = url.hostname;
+            console.log('2');
+        }
+        const res = await fetch(`http://${hostname}/api/v1/objectives#create`, {
             method: 'POST',
             headers: {
 				'Content-Type': 'application/json'
@@ -49,7 +61,7 @@
         <ChipItem>Outros</ChipItem>
     </Chip>
     <button type="submit" class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 " on:click={doPost}>Adicionar</button>
-
+	<p>{url.hostname}</p>
 </form>
 
 <style>
