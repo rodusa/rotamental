@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { addObjective } from '../stores/objectiveStore';
 	import { page } from '$app/stores';
-
 	import MyModal from '$lib/modal/modal.svelte';
-
+	import Chip from '$lib/chips/Chip.svelte';
+	import ChipItem from '$lib/chips/ChipItem.svelte';
+    
 	let isModalOpen = false;
 
 	//let today = $today_date;
@@ -18,8 +19,7 @@
 	let url = $page.url;
 
 	let todo = '';
-	import Chip from '$lib/chips/Chip.svelte';
-	import ChipItem from '$lib/chips/ChipItem.svelte';
+
 	let value = 1;
 
 	let name = 'baz';
