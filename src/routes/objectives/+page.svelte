@@ -1,20 +1,32 @@
 <script>
+    import {writable} from 'svelte/store';    
     import ObjectiveForm from "$lib/ObjectiveForm.svelte"; 
     import Objective from "$lib/Objective.svelte"; 
-    import {objectives} from "../../stores/objectiveStore";
     import {Circle2} from 'svelte-loading-spinners';
-    import { writable } from "svelte/store";
     import {getData} from './fetcher.js';
-  
-    const response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
     
+    let response = writable(new Promise(()=>{}));
+
+    response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
+       
+    
+	function handleMessage(event) {
+        //response= await getData('/api/user_expense_accounts.json');
+        //console.log($response);
+        response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
+     
+		console.log(event.detail.text);
+	}
+
+
     //let  result = writable(new Promise(()=>[]));
 
-    console.log($response);
+    
 </script>
 <main>
     <h1 class="text-2xl font-bold text-center text-gray-800 md:text-3xl">Objetivo de Estudo</h1>
-    <ObjectiveForm/>
+   
+    <ObjectiveForm on:message={handleMessage} />
 
     {#await $response}
        1 <Circle2 size="60" color="#FF3E00" unit="px" duration="1s" />    
