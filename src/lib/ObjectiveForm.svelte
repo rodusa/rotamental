@@ -4,6 +4,10 @@
 	import MyModal from '$lib/modal/modal.svelte';
 	import Chip from '$lib/chips/Chip.svelte';
 	import ChipItem from '$lib/chips/ChipItem.svelte';
+	import { createEventDispatcher } from 'svelte';
+	
+    const dispatch = createEventDispatcher(); 
+
 
 	let isModalOpen = false;
 
@@ -32,9 +36,15 @@
 	};
 
 	async function createPost() {
-		name = todo;
+
+		dispatch('message', {
+			text: 'NEW_RECORD_ADDED!'
+		});
+
+        name = todo;
 		if (url.hostname.includes(LOCALHOST_ADDR)) {
-			hostname = 'http://' + LOCALHOST_ADDR + ':3000';
+			//hostname = 'http://' + LOCALHOST_ADDR + ':3000';
+            hostname = 'https://api.rotamental.com.br';
 			console.log('1');
             console.log(hostname);
 		} else {
@@ -51,6 +61,7 @@
 				name
 			})
 		});
+
 
 		const json = await res.json();
 		result = JSON.stringify(json);

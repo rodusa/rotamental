@@ -1,3 +1,5 @@
+// By default Writable stores have basically 3 methods: subscribe, update and set
+//https://www.youtube.com/watch?v=IUHkSoBxyLM&t=264s&ab_channel=SvelteSociety
 import {writable} from 'svelte/store';
 const cache = new Map();
 
