@@ -4,7 +4,7 @@
 	import MyModal from '$lib/modal/modal.svelte';
 	import Chip from '$lib/chips/Chip.svelte';
 	import ChipItem from '$lib/chips/ChipItem.svelte';
-    
+
 	let isModalOpen = false;
 
 	//let today = $today_date;
@@ -31,14 +31,15 @@
 		console.log('submitting');
 	};
 
-	async function doPost() {
+	async function createPost() {
 		name = todo;
 		if (url.hostname.includes(LOCALHOST_ADDR)) {
 			hostname = 'http://' + LOCALHOST_ADDR + ':3000';
 			console.log('1');
+            console.log(hostname);
 		} else {
-			//hostname = "https://" + url.hostname;
-			hostname = 'https://sea-turtle-app-57tfz.ondigitalocean.app';
+			//hostname = "https://" + url.hostname;            
+			hostname = 'https://api.rotamental.com.br';
 			console.log('2');
 		}
 		const res = await fetch(`${hostname}/api/v1/objectives#create`, {
@@ -81,7 +82,7 @@
 	<button
 		type="submit"
 		class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 "
-		on:click={doPost}>Adicionar</button>
+		on:click={createPost}>Adicionar</button>
 
 	<p>{url.hostname}</p>
     <button type="button" on:click={openModal} class="btn">Open Modal</button>    
