@@ -39,7 +39,7 @@
        1 <Circle2 size="60" color="#FF3E00" unit="px" duration="1s" />    
     {:then result}
         {#each result.data as item}
-            <Objective objective={item} index={item.id} />
+            <Objective objective={item} index={item.id} on:message={handleMessage} />
             
         {/each}
     {:catch}

@@ -2,15 +2,22 @@
 	import * as utils from '../common/utils';
     import { deleteTodo } from '../stores/objectiveStore';
 	import { page } from '$app/stores';
+    import { createEventDispatcher } from 'svelte';    
 	export let objective;
-	let name = 'baz';
+
+    const dispatch = createEventDispatcher(); 
+
+    let name = 'baz';
 	let url = $page.url;
     
     //console.log(utils.getHostname(url));
 
 	async function deleteObjective(id) {
 		//name = todo;
-
+		dispatch('message', {
+			text: 'NEW_RECORD_ADDED!'
+		});
+        
 		const res = await fetch(`${utils.getHostname(url)}/api/v1/objectives/${id}`, {
 			method: 'DELETE',
 			headers: {
