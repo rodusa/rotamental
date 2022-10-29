@@ -5,15 +5,19 @@
     import {Circle2} from 'svelte-loading-spinners';
     import {getData} from './fetcher.js';
     
+    //let result = {};
     let response = writable(new Promise(()=>{}));
 
     response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
-       
-    
+           
 	function handleMessage(event) {
         //response= await getData('/api/user_expense_accounts.json');
         //console.log($response);
         response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
+        // response.subscribe(data => {
+        //     response = data;
+        // });
+        
      
 		console.log(event.detail.text);
 	}

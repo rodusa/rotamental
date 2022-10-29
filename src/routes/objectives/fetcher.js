@@ -3,8 +3,10 @@
 import {writable} from 'svelte/store';
 const cache = new Map();
 
+let store = writable(new Promise(() => {}));
+
 export function getData(url) {
-    const store = writable(new Promise(() => {}));
+    //const store = writable(new Promise(() => {}));
     
     if (cache.has(url)) {
         // gets content from cache
