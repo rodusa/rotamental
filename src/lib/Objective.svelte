@@ -29,7 +29,7 @@
 >
 	<input name="completed" type="checkbox" checked={objective.completed} />
 	<span class={`ml-2 flex-1 text-gray-800 ${objective.completed ? 'line-through' : ''}`}
-		>{objective.name}</span
+		>{objective.id} - {objective.name}</span
 	>
 
 	<button
