@@ -1,3 +1,4 @@
+
 <script lang="ts">
 	import { addObjective } from '../stores/objectiveStore';
 	import { page } from '$app/stores';
