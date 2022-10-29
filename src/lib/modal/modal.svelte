@@ -1,15 +1,15 @@
 <script>
 	import { fly, fade } from 'svelte/transition';
-	export let isModalOpen;
+	//export let isModalOpen;
 	export let modalConfig = {};
 
 	let HtmlSlotContent;
 	let modalInset = '200px 0 200px'; // Deafault Value
 	let modalWidth = '500px'; // Deafault Value
 
-	function closeModal() {
-		isModalOpen = false;
-	}
+	// function closeModal() {
+	// 	isModalOpen = false;
+	// }
 
 	$: {
 		if (modalConfig.type == 'DELETE') {
@@ -19,7 +19,7 @@
 	}
 </script>
 
-{#if isModalOpen}
+
 	<div
 		class="flex flex-col modal-wrapper bg-white  shadow-2xl rounded-box overflow-hidden p-4"
 		transition:fly={{ opacity: 0, y: 100 }}
@@ -28,13 +28,15 @@
 	>
 		<div class="flex-grow w-full" bind:this={HtmlSlotContent}>
 			<slot>
-				<p>fallback</p>
-				<button type="button">close</button>
 			</slot>
+			<p>fallback</p>
+			<button type="button">close</button>
+
 		</div>
 	</div>
-	<div on:click={closeModal} transition:fade class="background_overlay" />
-{/if}
+	<!-- <div on:click={closeModal} transition:fade class="background_overlay" /> -->
+	<div on:click transition:fade class="background_overlay" />
+
 
 <style>
 	.modal-wrapper {

@@ -27,7 +27,7 @@
         // });
         
      
-		//console.log(event.detail.text);
+		console.log(event.detail.text);
 	}
 
 

@@ -1,7 +1,3 @@
-//Configuring Digital Ocean App Platform Adapter
-https://github.com/TorstenDittmann/svelte-adapter-static-digitalocean
-// Debug Svelte VScode
-//One thing that might help to get this to work is adding Launch Chrome against localhost default webRoot to "${workspaceFolder}/src". That fixed the "Breakpoint set but not yet bound" error for me
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.

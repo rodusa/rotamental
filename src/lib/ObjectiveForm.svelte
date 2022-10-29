@@ -11,12 +11,13 @@
 
 
 	let isModalOpen = false;
+	let showModal = false;
 
 	//let today = $today_date;
 	////const today = new Date().toISOString();
 
 	function openModal() {
-		isModalOpen = true;
+		showModal = true;
 	}
 
 	let url = $page.url;
@@ -90,11 +91,16 @@
 	<p>{url.hostname}</p>
     <button type="button" on:click={openModal} class="btn">Open Modal</button>    
 </form>
-
-<MyModal bind:isModalOpen >
+{#if showModal}
+<MyModal 
+on:click={() => {
+	showModal=false;
+}}
+>
 <p> teste</p>
-
 </MyModal>
+{/if}
+
 <style>
 	/* input {
 		border: 1px solid transparent;

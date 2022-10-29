@@ -17,7 +17,7 @@
 		dispatch('message', {
 			text: 'NEW_RECORD_ADDED!'
 		});
-        
+        let x = 5;
 		const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives/${id}`, {
 			method: 'DELETE',
 			headers: {
