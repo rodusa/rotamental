@@ -3,27 +3,34 @@
 	export let isModalOpen;
 	export let modalConfig = {};
 
-    let HtmlSlotContent; 
-	let modalInset = "200px 0 200px"; // Deafault Value
-	let modalWidth = "500px"; // Deafault Value
-	
+	let HtmlSlotContent;
+	let modalInset = '200px 0 200px'; // Deafault Value
+	let modalWidth = '500px'; // Deafault Value
+
 	function closeModal() {
 		isModalOpen = false;
 	}
 
 	$: {
-		if (modalConfig.type == "DELETE") {
-			modalInset = "340px 0 340px";
-			modalWidth = "300px";
-	}
-
+		if (modalConfig.type == 'DELETE') {
+			modalInset = '340px 0 340px';
+			modalWidth = '300px';
+		}
 	}
 </script>
 
-{#if isModalOpen}	
-    <div class="flex flex-col modal-wrapper bg-white  shadow-2xl rounded-box overflow-hidden p-4" transition:fly={{ opacity: 0, y: 100 }} style:inset="{modalInset}" style:width="{modalWidth}">
-        <div class="flex-grow w-full" bind:this={HtmlSlotContent}>
-			<slot></slot>
+{#if isModalOpen}
+	<div
+		class="flex flex-col modal-wrapper bg-white  shadow-2xl rounded-box overflow-hidden p-4"
+		transition:fly={{ opacity: 0, y: 100 }}
+		style:inset={modalInset}
+		style:width={modalWidth}
+	>
+		<div class="flex-grow w-full" bind:this={HtmlSlotContent}>
+			<slot>
+				<p>fallback</p>
+				<button type="button">close</button>
+			</slot>
 		</div>
 	</div>
 	<div on:click={closeModal} transition:fade class="background_overlay" />
