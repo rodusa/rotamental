@@ -1,5 +1,5 @@
-
 <script lang="ts">
+	import * as utils from '../common/utils';
 	import { addObjective } from '../stores/objectiveStore';
 	import { page } from '$app/stores';
 	import MyModal from '$lib/modal/modal.svelte';
@@ -19,8 +19,6 @@
 		isModalOpen = true;
 	}
 
-	let LOCALHOST_ADDR = '127.0.0.1';
-	let hostname = LOCALHOST_ADDR; //
 	let url = $page.url;
 
 	let todo = '';
@@ -43,17 +41,8 @@
 		});
 
         name = todo;
-		if (url.hostname.includes(LOCALHOST_ADDR)) {
-			//hostname = 'http://' + LOCALHOST_ADDR + ':3000';
-            hostname = 'https://api.rotamental.com.br';
-			console.log('1');
-            console.log(hostname);
-		} else {
-			//hostname = "https://" + url.hostname;            
-			hostname = 'https://api.rotamental.com.br';
-			console.log('2');
-		}
-		const res = await fetch(`${hostname}/api/v1/objectives#create`, {
+
+		const res = await fetch(`${utils.getHostname(url)}/api/v1/objectives#create`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -66,7 +55,11 @@
 
 		const json = await res.json();
 		result = JSON.stringify(json);
+
 	}
+
+	let s = utils.getHostname(url);
+	console.log(s);
 </script>
 
 <form class="my-6" on:submit|preventDefault={handleSubmit}>
