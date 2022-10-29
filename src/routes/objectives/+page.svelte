@@ -14,6 +14,9 @@
         //response= await getData('/api/user_expense_accounts.json');
         //console.log($response);
         response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
+        $response.then((data) => {
+            response = response;
+        })
         // response.subscribe(data => {
         //     response = data;
         // });

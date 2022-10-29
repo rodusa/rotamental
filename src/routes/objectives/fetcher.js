@@ -2,6 +2,7 @@
 //https://www.youtube.com/watch?v=IUHkSoBxyLM&t=264s&ab_channel=SvelteSociety
 //https://www.youtube.com/watch?v=Yetk_OWplrE
 import {writable} from 'svelte/store';
+
 const cache = new Map();
 
 let store = writable(new Promise(() => {}));
@@ -12,6 +13,7 @@ export function getData(url) {
     if (cache.has(url)) {
         // gets content from cache
         store.set(Promise.resolve(cache.get(url)))
+        
     }
 
     const load = async() => {
