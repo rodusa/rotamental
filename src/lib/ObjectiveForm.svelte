@@ -58,8 +58,6 @@
 
 	}
 
-	let s = utils.getAPIHostname(url);
-	console.log(s);
 </script>
 
 <form class="my-6" on:submit|preventDefault={handleSubmit}>
