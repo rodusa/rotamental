@@ -42,7 +42,7 @@
 
         name = todo;
 
-		const res = await fetch(`${utils.getHostname(url)}/api/v1/objectives#create`, {
+		const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -58,7 +58,7 @@
 
 	}
 
-	let s = utils.getHostname(url);
+	let s = utils.getAPIHostname(url);
 	console.log(s);
 </script>
 

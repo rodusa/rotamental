@@ -1,4 +1,4 @@
-export function getHostname(url) {
+export function getAPIHostname(url) {
     // GET RAILS API LOCALHOST
 	const LOCALHOST_ADDR = '127.0.0.1';
 	let hostname = LOCALHOST_ADDR; //

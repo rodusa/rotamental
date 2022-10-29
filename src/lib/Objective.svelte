@@ -10,7 +10,7 @@
     let name = 'baz';
 	let url = $page.url;
     
-    //console.log(utils.getHostname(url));
+    //console.log(utils.getAPIHostname(url));
 
 	async function deleteObjective(id) {
 		//name = todo;
@@ -18,7 +18,7 @@
 			text: 'NEW_RECORD_ADDED!'
 		});
         
-		const res = await fetch(`${utils.getHostname(url)}/api/v1/objectives/${id}`, {
+		const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives/${id}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'

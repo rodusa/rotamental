@@ -4,16 +4,21 @@
     import Objective from "$lib/Objective.svelte"; 
     import {Circle2} from 'svelte-loading-spinners';
     import {getData} from './fetcher.js';
-    
+    import { page } from '$app/stores';
+    import * as utils from '../../common/utils';
+
+    let url = $page.url;
     //let result = {};
     let response = writable(new Promise(()=>{}));
 
-    response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
+    let hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`
+    response = getData(hostname);
+    //response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
            
 	function handleMessage(event) {
-        //response= await getData('/api/user_expense_accounts.json');
         //console.log($response);
-        response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
+        //response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
+        response = getData(hostname);
         $response.then((data) => {
             response = response;
         })
@@ -22,7 +27,7 @@
         // });
         
      
-		console.log(event.detail.text);
+		//console.log(event.detail.text);
 	}
 
 
