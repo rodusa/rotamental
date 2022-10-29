@@ -22,7 +22,9 @@
 
 {#if isModalOpen}	
     <div class="flex flex-col modal-wrapper bg-white  shadow-2xl rounded-box overflow-hidden p-4" transition:fly={{ opacity: 0, y: 100 }} style:inset="{modalInset}" style:width="{modalWidth}">
-        <div class="flex-grow w-full" bind:this={HtmlSlotContent}><slot></slot></div>
+        <div class="flex-grow w-full" bind:this={HtmlSlotContent}>
+			<slot></slot>
+		</div>
 	</div>
 	<div on:click={closeModal} transition:fade class="background_overlay" />
 {/if}
