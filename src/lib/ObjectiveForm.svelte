@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as utils from '../common/utils';
+	import { slide} from "svelte/transition";
 	import { addObjective } from '../stores/objectiveStore';
 	import { page } from '$app/stores';
 	import MyModal from '$lib/modal/modal.svelte';
@@ -65,7 +66,7 @@
 	}
 </script>
 
-<form class="my-6" on:submit|preventDefault={handleSubmit}>
+<form class="my-6" on:submit|preventDefault={handleSubmit} transition:slide>
 	<div class="flex flex-col text-sm mb-2">
 		<label class="font-bold text-sm mb-2" for="todo">Objetivo de Estudo</label>
 		<input
