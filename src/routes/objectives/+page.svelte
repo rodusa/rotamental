@@ -13,23 +13,24 @@
     //let result = {};
     let response = writable(new Promise(()=>{}));
 
+
     let hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`
     
     //response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
      
-    // onMount(async () => {
-    response = getData(hostname, true);
-	//});
+    onMount(async () => {
+        response = getData(hostname, true);
+        let x = await $response;
+	});
 
-	function handleMessage(event) {
+	async function handleMessage(event) {
         response = getData(hostname, false);
-        response = response;
+        let x = await $response;
 		console.log(event.detail.text);
 	}
 
     //let  result = writable(new Promise(()=>[]));
-
-    
+ 
 </script>
 <main>
     <h1 class="text-2xl font-bold text-center text-gray-800 md:text-3xl">Objetivo de Estudo</h1>
