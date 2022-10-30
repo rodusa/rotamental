@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as utils from '../common/utils';
-    import { deleteTodo } from '../stores/objectiveStore';
+    // import { deleteTodo } from '../stores/objectiveStore';
 	import { page } from '$app/stores';
     import { createEventDispatcher } from 'svelte';    
 	export let objective;
@@ -15,7 +15,6 @@
 	async function deleteObjective(id) {
 		//name = todo;
 
-        let x = 5;
 		const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives/${id}`, {
 			method: 'DELETE',
 			headers: {
