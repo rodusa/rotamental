@@ -36,11 +36,6 @@
 	};
 
 	async function createPost() {
-
-		dispatch('message', {
-			text: 'NEW_RECORD_ADDED!'
-		});
-
         name = todo;
 
 		const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
@@ -52,7 +47,11 @@
 				name
 			})
 		});
-
+		if (res.status==200) {
+			dispatch('message', {
+				text: 'NEW_RECORD_ADDED!'
+			});
+		}
 
 		const json = await res.json();
 		result = JSON.stringify(json);

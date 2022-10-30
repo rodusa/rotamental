@@ -4,26 +4,35 @@
 import {writable} from 'svelte/store';
 
 const cache = new Map();
-
+//export const timeout = writable(false);
 let store = writable(new Promise(() => {}));
 
-export function getData(url) {
+export function getData(url, enable_cache) {
     //const store = writable(new Promise(() => {}));
+    let x = 5;
     
-    if (cache.has(url)) {
+    if (enable_cache && cache.has(url)) {
         // gets content from cache
-        store.set(Promise.resolve(cache.get(url)))
-        
+        store.set(Promise.resolve(cache.get(url)))        
     }
 
     const load = async() => {
         const response = await fetch(url);
         const data = await response.json();
         
-        cache.set(url, data);
+        if (enable_cache && cache.has(url)) {
+            cache.set(url, data);            
+        
+        }
         store.set(Promise.resolve(data));
     }
     load();
 
     return store;
 }
+
+    // export async function fetchData(url) {
+    //     const response = await fetch(url);
+    //     const data = await response.json();
+    //     return data;
+    // }
