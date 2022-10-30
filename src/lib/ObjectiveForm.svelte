@@ -47,13 +47,15 @@
 				name
 			})
 		});
+
+		const json = await res.json();
+
 		if (res.status==200) {
 			dispatch('message', {
 				text: 'NEW_RECORD_ADDED!'
 			});
 		}
 
-		const json = await res.json();
 		result = JSON.stringify(json);
 
 	}

@@ -6,7 +6,8 @@
 	export let objective;
 
     const dispatch = createEventDispatcher(); 
-
+	
+	let result = null;
     let name = 'baz';
 	let url = $page.url;
     
@@ -22,13 +23,15 @@
 			}
 		});
 
-		let m = res;
-		//The HTTP 204 No Content success status response code indicates that a request has succeeded, but no body response is necessary
+		//const json = await res.json();
+
 		if (res.status==204) {
 			dispatch('message', {
 				text: 'NEW_RECORD_ADDED!'
 			});
 		}
+
+		//result = JSON.stringify(json);		
 	}
 </script>
 
