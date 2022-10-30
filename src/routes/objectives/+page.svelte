@@ -23,7 +23,7 @@
 
 	function handleMessage(event) {
         response = getData(hostname, false);
-        
+        response = response;
 		console.log(event.detail.text);
 	}
 
