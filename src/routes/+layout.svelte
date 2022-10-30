@@ -7,9 +7,10 @@
 <!-- <div class="app"> -->
 	<div class="container mx-auto my-6 max-w-2xl">
 	<Header />
+	
 
 	<!-- <main> -->
-		<slot />
+		<slot/>
 	<!-- </main> -->
 
 	<footer>

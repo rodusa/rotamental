@@ -34,7 +34,7 @@
     //let  result = writable(new Promise(()=>[]));
  
 </script>
-<main>
+<main class="mt-10">
     <h1 class="text-2xl font-bold text-center text-gray-800 md:text-3xl">Objetivo de Estudo</h1>
     <div class="flex flex-col text-sm mb-2">
 		<button
