@@ -6,9 +6,9 @@
 	import Chip from '$lib/chips/Chip.svelte';
 	import ChipItem from '$lib/chips/ChipItem.svelte';
 	import { createEventDispatcher } from 'svelte';
-	
-    const dispatch = createEventDispatcher(); 
 
+	const dispatch = createEventDispatcher();
+	export let showForm = true;
 
 	let isModalOpen = false;
 	let showModal = false;
@@ -29,14 +29,18 @@
 	let name = 'baz';
 	let result = null;
 
+	function closeForm() {
+		showForm=false;
+	}
+
 	const handleSubmit = () => {
 		addObjective(todo);
 		todo = '';
 		console.log('submitting');
 	};
 
-	async function createPost() {
-        name = todo;
+	async function createPost() {		
+		name = todo;
 
 		const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
 			method: 'POST',
@@ -50,16 +54,15 @@
 
 		const json = await res.json();
 
-		if (res.status==200) {
+		if (res.status == 200) {
 			dispatch('message', {
 				text: 'NEW_RECORD_ADDED!'
 			});
 		}
 
 		result = JSON.stringify(json);
-
+		showForm = false;
 	}
-
 </script>
 
 <form class="my-6" on:submit|preventDefault={handleSubmit}>
@@ -84,22 +87,30 @@
 		<ChipItem>Bolsa de Estudos</ChipItem>
 		<ChipItem>Outros</ChipItem>
 	</Chip>
+	<div class="flex flex-row justify-between mx-5 my-5">
 	<button
 		type="submit"
-		class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 "
-		on:click={createPost}>Adicionar</button>
+		class="w-28 shadow-sm rounded bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 "
+		on:click={closeForm}>Cancelar</button
+	>
+	<button
+		type="submit"
+		class="w-28 shadow-sm rounded bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 "
+		on:click={createPost}>Salvar</button
+	>
+	</div>
 
 	<p>{url.hostname}</p>
-    <button type="button" on:click={openModal} class="btn">Open Modal</button>    
+	<button type="button" on:click={openModal} class="btn">Open Modal</button>
 </form>
 {#if showModal}
-<MyModal 
-on:click={() => {
-	showModal=false;
-}}
->
-<p> teste</p>
-</MyModal>
+	<MyModal
+		on:click={() => {
+			showModal = false;
+		}}
+	>
+		<p>teste</p>
+	</MyModal>
 {/if}
 
 <style>

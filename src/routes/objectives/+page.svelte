@@ -9,25 +9,25 @@
     import * as utils from '../../common/utils';
 
     let url = $page.url;
-
+    let showForm = false;
     //let result = {};
     let response = writable(new Promise(()=>{}));
 
 
     let hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`
     
-    //response = getData('https://api.rotamental.com.br/api/v1/objectives#index');
+    function showAddBox() {
+		showForm=true;
+	}
      
     onMount(async () => {
         response = getData(hostname, true);
-        let x = await $response;
+        //let x = await $response;
 	});
 
-	async function handleMessage(event) {
+	function handleMessage(event) {
         response = getData(hostname, false);
-        //$response = $response;
-        let x = await $response;
-        $response =$response
+        //let x = await $response;
 		console.log(event.detail.text);
 	}
 
@@ -36,9 +36,20 @@
 </script>
 <main>
     <h1 class="text-2xl font-bold text-center text-gray-800 md:text-3xl">Objetivo de Estudo</h1>
-   
-    <ObjectiveForm on:message={handleMessage} />
+    <div class="flex flex-col text-sm mb-2">
+		<button
+		type="submit"
+		class=" w-28 shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 "
+        on:click={showAddBox}
+		>Adicionar</button>
+	</div>
+    {#if showForm}
 
+	<div
+    class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">
+        <ObjectiveForm on:message={handleMessage} bind:showForm={showForm} />
+    </div>
+    {/if}
     {#await $response}
        1 <Circle2 size="60" color="#FF3E00" unit="px" duration="1s" />    
     {:then result}
