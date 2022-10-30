@@ -78,8 +78,10 @@
 		/>
 	</div>
 	<!-- <button type="submit" class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Submit</button> -->
-	<h3>selected value<small>({value})</small></h3>
+	<!-- <h3>selected value<small>({value})</small></h3> -->
+	
 	<Chip bind:value>
+		<div  class="mt-2 mb-2">
 		<ChipItem>Concurso Público</ChipItem>
 		<ChipItem>Entrevista de Emprego</ChipItem>
 
@@ -87,7 +89,9 @@
 		<ChipItem>Exame OAB, Medicina, etc.</ChipItem>
 		<ChipItem>Bolsa de Estudos</ChipItem>
 		<ChipItem>Outros</ChipItem>
+	</div>
 	</Chip>
+	
 	<div class="flex flex-row justify-between mx-5 my-5">
 	<button
 		type="submit"
