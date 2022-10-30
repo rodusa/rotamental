@@ -25,7 +25,9 @@
 
 	async function handleMessage(event) {
         response = getData(hostname, false);
+        //$response = $response;
         let x = await $response;
+        $response =$response
 		console.log(event.detail.text);
 	}
 
