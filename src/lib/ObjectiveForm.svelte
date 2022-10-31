@@ -64,7 +64,7 @@
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					name: objective.name, area: objective.area
+					name: objective.name, area: chip_value
 				})
 			});
 
@@ -76,7 +76,7 @@
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					name: objective.name, area: objective.area
+					name: objective.name, area: chip_value
 				})
 			});
 		}
