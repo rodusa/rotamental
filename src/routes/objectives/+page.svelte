@@ -13,7 +13,6 @@
     //let result = {};
     let response = writable(new Promise(()=>{}));
 
-
     let hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`
     
     function showAddBox() {

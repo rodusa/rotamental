@@ -1,17 +1,28 @@
 <script lang="ts">
 	import * as utils from '../common/utils';
 	import { slide} from "svelte/transition";
-	import { addObjective } from '../stores/objectiveStore';
+	import { addObjective, objectiveItem } from '../stores/objectiveStore';
+	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import MyModal from '$lib/modal/modal.svelte';
 	import Chip from '$lib/chips/Chip.svelte';
 	import ChipItem from '$lib/chips/ChipItem.svelte';
 	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
 	export let showForm = true;
-
+	const dispatch = createEventDispatcher();	
 	let showModal = false;
+
+	let objective = {};
+	let todo = '';
+	onMount(async () => {
+		objectiveItem.subscribe(objval => {
+			objective = objval;
+			console.log("value: "+ objval.name);
+			todo = objective ? objective.name : '';
+		})
+	});
+		
+	// });	
 
 	//let today = $today_date;
 	////const today = new Date().toISOString();
@@ -20,9 +31,7 @@
 		showModal = true;
 	}
 
-	let url = $page.url;
-
-	let todo = '';
+	let url = $page.url;	
 
 	let chip_value = 1;
 
@@ -70,7 +79,7 @@
 		<label class="font-bold text-sm mb-2" for="todo">Objetivo de Estudo</label>
 		<input
 			type="text"
-			bind:value={todo}
+			bind:value={objective.name}
 			name="todo"
 			placeholder="Watch"
 			class="appearance-none shadow-sm border border-gray-200 p-2 focus:outline-none focus:border-red-500 rounded-lg"
