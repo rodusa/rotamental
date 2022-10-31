@@ -11,14 +11,18 @@
 	export let showForm = true;
 	const dispatch = createEventDispatcher();	
 	let showModal = false;
-
+	let chip_value = 0;
 	let objective = {};
 	let todo = '';
+	
 	onMount(async () => {
+		// Edit item
 		objectiveItem.subscribe(objval => {
-			objective = objval;
-			console.log("value: "+ objval.name);
-			todo = objective ? objective.name : '';
+			if (objval && objval.name) {
+				objective = objval;
+				todo = objective ? objective.name : '';
+				chip_value =  objective ? objective.area : chip_value;
+			}
 		})
 	});
 		
@@ -33,8 +37,6 @@
 
 	let url = $page.url;	
 
-	let chip_value = 1;
-
 	let name = 'baz';
 	let result = null;
 
@@ -48,18 +50,36 @@
 		console.log('submitting');
 	};
 
-	async function createPost() {		
+	async function saveRecord() {		
 		name = todo;
+		let res = null;	
+		
+		// Edit mode (check if id exists)
+		if (objective.id != undefined) {
+			// Edit mode
+			res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives/${objective.id}`, {
+			//const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					name: objective.name, area: objective.area
+				})
+			});
 
-		const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				name: objective.name, area: chip_value
-			})
-		});
+		}else{
+			//New mode
+				res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					name: objective.name, area: objective.area
+				})
+			});
+		}
 
 		const json = await res.json();
 
@@ -108,7 +128,7 @@
 	<button
 		type="submit"
 		class="w-28 shadow-sm rounded bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 "
-		on:click={createPost}>Salvar</button
+		on:click={saveRecord}>Salvar</button
 	>
 	</div>
 

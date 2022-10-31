@@ -17,7 +17,12 @@
     let hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`
     
     function showAddBox() {
-        $objectiveItem.name='';
+        // RESET FORM to Blank fieldsd
+        if ($objectiveItem) {
+            $objectiveItem.name = '';
+            $objectiveItem.area = 0;
+        }
+        
 		showForm=true;
 	}
      
