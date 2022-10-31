@@ -4,6 +4,7 @@
 	import { page } from '$app/stores';
     import { createEventDispatcher } from 'svelte';    
 	export let objective;
+	export let showForm = false;
 
     const dispatch = createEventDispatcher(); 
 	
@@ -41,7 +42,13 @@
 >
 	<input name="completed" type="checkbox" checked={objective.completed} />
 	<span class={`ml-2 flex-1 text-gray-800 ${objective.completed ? 'line-through' : ''}`}
-		>{objective.id} {objective.area} - {objective.name}</span
+	on:click={() => {showForm=true;}}>{objective.id} - area: {objective.area} - {objective.name}</span
+	>
+
+	<button
+		type="button"
+		class="mr-3 text-sm bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+		on:click={() => showForm=true}>edit</button
 	>
 
 	<button
