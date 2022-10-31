@@ -1,6 +1,7 @@
 <script>
     import {writable} from 'svelte/store';
     import { onMount } from 'svelte';
+    import { objectiveItem } from '../../stores/objectiveStore';
     import ObjectiveForm from "$lib/ObjectiveForm.svelte"; 
     import Objective from "$lib/Objective.svelte"; 
     import {Circle2} from 'svelte-loading-spinners';
@@ -16,6 +17,7 @@
     let hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`
     
     function showAddBox() {
+        $objectiveItem.name='';
 		showForm=true;
 	}
      

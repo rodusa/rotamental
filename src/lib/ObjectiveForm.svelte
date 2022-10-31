@@ -57,7 +57,7 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				name, area: chip_value
+				name: objective.name, area: chip_value
 			})
 		});
 
