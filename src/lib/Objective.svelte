@@ -44,7 +44,7 @@
 	class="bg-white flex items-center shadow-sm border border-gray-200 rounded-lg my-2 
             py-2 px-4"
 >
-	<input name="completed" type="checkbox" checked={objective.completed} />
+	<!-- <input name="completed" type="checkbox" checked={objective.completed} /> -->
 	<span class={`ml-2 flex-1 text-gray-800 ${objective.completed ? 'line-through' : ''}`}
 	on:click={() => {showForm=true}}>{objective.id} - area: {objective.area} - {objective.name}</span
 	>

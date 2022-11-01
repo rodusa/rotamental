@@ -45,7 +45,7 @@
 	}
 
 	const handleSubmit = () => {
-		addObjective(todo);
+		//addObjective(todo);
 		todo = '';
 		console.log('submitting');
 	};
