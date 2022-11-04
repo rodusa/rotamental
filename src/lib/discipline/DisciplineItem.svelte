@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as utils from '../common/utils';
+	import * as utils from '../../common/utils';
 	import { onMount } from 'svelte';
-    import { objectiveItem } from '../stores/objectiveStore';
+    import { objectiveItem } from '../../stores/objectiveStore';
 	import { page } from '$app/stores';
     import { createEventDispatcher } from 'svelte';    
 	export let objective;
@@ -17,7 +17,6 @@
 		objectiveItem.set(obj);
 	}
 	
-
 	async function deleteObjective(id) {
 		//name = todo;
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import * as utils from '../common/utils';
+	import * as utils from '../../common/utils';
 	import { slide} from "svelte/transition";
-	import { addObjective, objectiveItem } from '../stores/objectiveStore';
+	import { addObjective, objectiveItem } from '../../stores/objectiveStore';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import MyModal from '$lib/modal/modal.svelte';
