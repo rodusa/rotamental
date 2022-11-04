@@ -2,8 +2,8 @@
     import {writable} from 'svelte/store';
     import { onMount } from 'svelte';
     import { objectiveItem } from '../../stores/objectiveStore';
-    import ObjectiveForm from "$lib/discipline/DisciplineForm.svelte"; 
-    import Objective from "$lib/discipline/DisciplineItem.svelte"; 
+    import ObjectiveForm from "$lib/objective/ObjectiveForm.svelte"; 
+    import Objective from "$lib/objective/ObjectiveItem.svelte"; 
     import {Circle2} from 'svelte-loading-spinners';
     import {getData} from './fetcher.js';
     import { page } from '$app/stores';
@@ -41,7 +41,7 @@
  
 </script>
 <main class="mt-10">
-    <h1 class="text-2xl font-bold text-center text-gray-800 md:text-3xl">Disciplinas</h1>
+    <h1 class="text-2xl font-bold text-center text-gray-800 md:text-3xl">Objetivo de Estudo</h1>
     <div class="flex flex-col text-sm mb-2">
 		<button
 		type="submit"
