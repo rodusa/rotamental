@@ -102,7 +102,6 @@
 		<Dp></Dp>
 	</div>
 
-
 	<div class="flex flex-col text-sm mb-2">
 		<label class="font-bold text-sm mb-2" for="todo">Disciplinas</label>
 		<input
@@ -153,15 +152,3 @@
 		<p>teste</p>
 	</MyModal>
 {/if}
-
-<style>
-	/* input {
-		border: 1px solid transparent;
-	}
-
-	input:focus-visible {
-		box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.1);
-		border: 1px solid #ff3e00 !important;
-		outline: none;
-	} */
-</style>
