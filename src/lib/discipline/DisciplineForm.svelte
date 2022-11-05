@@ -5,9 +5,12 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import MyModal from '$lib/modal/modal.svelte';
-	import Chip from '$lib/chips/Chip.svelte';
-	import ChipItem from '$lib/chips/ChipItem.svelte';
+	// import Chip from '$lib/chips/Chip.svelte';
+	// import ChipItem from '$lib/chips/ChipItem.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import Dp from '$lib/selectbox/Select.svelte';
+
+
 	export let showForm = true;
 	const dispatch = createEventDispatcher();	
 	let showModal = false;
@@ -96,14 +99,9 @@
 
 <form class="my-6" on:submit|preventDefault={handleSubmit} transition:slide>
 	<div class="flex flex-col text-sm mb-2">
-		<label class="font-bold text-sm mb-2" for="todo">Objetivo</label>
-		<input
-			type="text"
-			name="todo"
-			placeholder="Watch"
-			class="appearance-none shadow-sm border border-gray-200 p-2 focus:outline-none focus:border-red-500 rounded-lg"
-		/>
+		<Dp></Dp>
 	</div>
+
 
 	<div class="flex flex-col text-sm mb-2">
 		<label class="font-bold text-sm mb-2" for="todo">Disciplinas</label>
@@ -112,7 +110,7 @@
 			bind:value={objective.name}
 			name="todo"
 			placeholder="Watch"
-			class="appearance-none shadow-sm border border-gray-200 p-2 focus:outline-none focus:border-red-500 rounded-lg"
+			class="appearance-none shadow-sm border border-gray-200 p-2 focus:outline-none focus:border-blue-500 rounded-lg"
 		/>
 	</div>
 

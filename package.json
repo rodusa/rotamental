@@ -38,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelte-adapter-static-digitalocean": "^0.0.10"
+		"svelte-adapter-static-digitalocean": "^0.0.10",
+		"svelte-select": "^4.4.7"
 	}
 }
