@@ -23,11 +23,11 @@
 			https://github.com/rob-balfre/svelte-select/blob/master/docs/theming_variables.md
 	*/
 	
-	.selectContainer {
+	.selectContainer.s-322NloBWXWsQ {
 		border:none;
 	}
 
-	.selectContainer input {
+	input.s-322NloBWXWsQ {
 		background: orange;
 		border: 1px solid rgb(19, 86, 218) !important;
 		border-radius: 0.5rem;

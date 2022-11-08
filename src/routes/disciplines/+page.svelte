@@ -1,11 +1,12 @@
 <script>
     import {writable} from 'svelte/store';
     import { onMount } from 'svelte';
-    import { objectiveItem } from '../../stores/objectiveStore';
-    import ObjectiveForm from "$lib/discipline/DisciplineForm.svelte"; 
-    import Objective from "$lib/discipline/DisciplineItem.svelte"; 
+    import { disciplineItem } from '../../stores/disciplineStore';
+    import DisciplineForm from "$lib/discipline/DisciplineForm.svelte"; 
+    import Discipline from "$lib/discipline/DisciplineItem.svelte"; 
     import {Circle2} from 'svelte-loading-spinners';
-    import {getData} from './fetcher.js';
+    import {getData as getDisciplines} from './fetcher.js';
+    import {getData as getObjectives} from '../objectives/fetcher.js';
     import { page } from '$app/stores';
     import * as utils from '../../common/utils';
 
@@ -13,26 +14,37 @@
     let showForm = false;
     //let result = {};
     let response = writable(new Promise(()=>{}));
+    let response_objectives = writable(new Promise(()=>{}));
 
-    let hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`
-    
+    let hostname = `${utils.getAPIHostname(url)}/api/v1/disciplines/#index`;
+    let objectives_hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`;
+
     function showAddBox() {
         // RESET FORM to Blank fieldsd
-        if ($objectiveItem) {
-            $objectiveItem.name = '';
-            $objectiveItem.area = 0;
+        if ($disciplineItem) {
+            $disciplineItem.name = '';
+            //$disciplineItem.area = 0;
         }
-        
 		showForm=true;
 	}
      
     onMount(async () => {
-        response = getData(hostname, true);
+        response = getDisciplines(hostname, true);
+        //$response.then((response) => {
+        response_objectives = getObjectives(objectives_hostname, true);
+        let ar = await $response_objectives;
+        var item = ar.data.find(item => item.id === 114);
+        console.log(item);
+        let x = 5;
+
+        //})
+
+        //console.log($response_objectives);
         //let x = await $response;
 	});
 
 	function handleMessage(event) {
-        response = getData(hostname, false);
+        response = getDisciplines(hostname, false);
         //let x = await $response;
 		console.log(event.detail.text);
 	}
@@ -53,14 +65,14 @@
 
 	<div
     class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">
-        <ObjectiveForm on:message={handleMessage} bind:showForm={showForm} />
+        <DisciplineForm on:message={handleMessage} bind:showForm={showForm} bind:objectives={$response_objectives}  />
     </div>
     {/if}
     {#await $response}
        1 <Circle2 size="60" color="#FF3E00" unit="px" duration="1s" />    
     {:then result}
         {#each result.data as item}
-            <Objective objective={item} index={item.id} on:message={handleMessage} bind:showForm={showForm} />
+            <Discipline discipline={item} index={item.id} on:message={handleMessage} bind:showForm={showForm} />
             
         {/each}
     {:catch}
@@ -68,15 +80,14 @@
     {/await}
 
 
-
-    <!-- {#await $response}
-        2<Circle2 size="60" color="#FF3E00" unit="px" duration="1s" />    
+    {#await $response_objectives}
+       ### <Circle2 size="60" color="#FF3E00" unit="px" duration="1s" />    
     {:then data}
     <pre>  {JSON.stringify(data, null, 2)}</pre>
     {:catch}
     <p>erro aqui</p>
     {/await}
- -->
+
 
 </main>
 

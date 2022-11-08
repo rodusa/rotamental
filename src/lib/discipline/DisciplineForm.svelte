@@ -1,7 +1,7 @@
 <script lang="ts">
 	import * as utils from '../../common/utils';
 	import { slide} from "svelte/transition";
-	import { addObjective, objectiveItem } from '../../stores/objectiveStore';
+	import { addDiscipline, disciplineItem } from '../../stores/disciplineStore';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import MyModal from '$lib/modal/modal.svelte';
@@ -15,16 +15,16 @@
 	const dispatch = createEventDispatcher();	
 	let showModal = false;
 	let chip_value = 0;
-	let objective = {};
+	let discipline = {};
 	let todo = '';
 	
 	onMount(async () => {
 		// Edit item
-		objectiveItem.subscribe(objval => {
+		disciplineItem.subscribe(objval => {
 			if (objval && objval.name) {
-				objective = objval;
-				todo = objective ? objective.name : '';
-				chip_value =  objective ? objective.area : chip_value;
+				discipline = objval;
+				todo = discipline ? discipline.name : '';
+				chip_value =  discipline ? discipline.area : chip_value;
 			}
 		})
 	});
@@ -58,28 +58,28 @@
 		let res = null;	
 		
 		// Edit mode (check if id exists)
-		if (objective.id != undefined) {
+		if (discipline.id != undefined) {
 			// Edit mode
-			res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives/${objective.id}`, {
+			res = await fetch(`${utils.getAPIHostname(url)}/api/v1/disciplines/${discipline.id}`, {
 			//const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					name: objective.name, area: chip_value
+					name: discipline.name, area: chip_value
 				})
 			});
 
 		}else{
 			//New mode
-				res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
+				res = await fetch(`${utils.getAPIHostname(url)}/api/v1/disciplines#create`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					name: objective.name, area: chip_value
+					name: discipline.name, area: chip_value
 				})
 			});
 		}
@@ -103,10 +103,10 @@
 	</div>
 
 	<div class="flex flex-col text-sm mb-2">
-		<label class="font-bold text-sm mb-2" for="todo">Disciplinas</label>
+		<label class="font-bold text-sm mb-2" for="todo">Disciplina</label>
 		<input
 			type="text"
-			bind:value={objective.name}
+			bind:value={discipline.name}
 			name="todo"
 			placeholder="Watch"
 			class="appearance-none shadow-sm border border-gray-200 p-2 focus:outline-none focus:border-blue-500 rounded-lg"
