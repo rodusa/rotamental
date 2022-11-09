@@ -7,7 +7,7 @@
 	export let discipline;
 	
 	export let showForm = false;
-	export let objectives;
+
 	
     const dispatch = createEventDispatcher(); 
 	
@@ -19,6 +19,7 @@
 		disciplineItem.set(obj);
 	}
 	
+
 	async function deleteDiscipline(id) {
 		//name = todo;
 

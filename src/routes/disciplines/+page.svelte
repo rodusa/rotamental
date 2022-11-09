@@ -18,7 +18,8 @@
 
     let hostname = `${utils.getAPIHostname(url)}/api/v1/disciplines/#index`;
     let objectives_hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`;
-
+    let ar_objectives = []; 
+    
     function showAddBox() {
         // RESET FORM to Blank fieldsd
         if ($disciplineItem) {
@@ -27,14 +28,16 @@
         }
 		showForm=true;
 	}
-     
+    
+
     onMount(async () => {
         response = getDisciplines(hostname, true);
         //$response.then((response) => {
         response_objectives = getObjectives(objectives_hostname, true);
-        let ar = await $response_objectives;
-        var item = ar.data.find(item => item.id === 114);
-        console.log(item);
+        //ar_objectives = await $response_objectives;
+        
+        //var item = ar_objectives.data.find(item => item.id === 114);
+        //console.log(item);
         let x = 5;
 
         //})
@@ -90,4 +93,3 @@
 
 
 </main>
-

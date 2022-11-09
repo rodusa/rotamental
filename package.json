@@ -39,6 +39,6 @@
 	"type": "module",
 	"dependencies": {
 		"svelte-adapter-static-digitalocean": "^0.0.10",
-		"svelte-select": "^4.4.7"
+		"svelte-select": "^5.0.0-beta.40"
 	}
 }

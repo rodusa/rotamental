@@ -12,19 +12,36 @@
 
 
 	export let showForm = true;
+	export let objectives;
+
 	const dispatch = createEventDispatcher();	
 	let showModal = false;
+	let selectedValue = 'ENEM';
 	let chip_value = 0;
 	let discipline = {};
 	let todo = '';
+	let objective_name;
 	
+	// function handleSelect(event) {
+   	//  console.log('selected item', event.detail);
+    // 	// .. do something here 🙂
+  	// }
+
 	onMount(async () => {
+		
 		// Edit item
 		disciplineItem.subscribe(objval => {
 			if (objval && objval.name) {
 				discipline = objval;
 				todo = discipline ? discipline.name : '';
 				chip_value =  discipline ? discipline.area : chip_value;
+
+				// get selected Dropdown
+				objectives.then((result) => { 
+				let item = result.data.find(item => item.id === discipline.objective_id);
+					objective_name = item.name;
+				});
+
 			}
 		})
 	});
@@ -99,7 +116,8 @@
 
 <form class="my-6" on:submit|preventDefault={handleSubmit} transition:slide>
 	<div class="flex flex-col text-sm mb-2">
-		<Dp></Dp>
+		<p>{objective_name}
+		<Dp bind:selectedValue={selectedValue} ></Dp>
 	</div>
 
 	<div class="flex flex-col text-sm mb-2">
