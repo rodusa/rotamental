@@ -10,13 +10,12 @@
 	import { createEventDispatcher } from 'svelte';
 	import Dp from '$lib/selectbox/Select.svelte';
 
-
 	export let showForm = true;
 	export let objectives;
 
 	const dispatch = createEventDispatcher();	
 	let showModal = false;
-	let selectedValue = 'ENEM';
+	let selectedValue = "114";
 	let chip_value = 0;
 	let discipline = {};
 	let todo = '';
@@ -117,7 +116,8 @@
 <form class="my-6" on:submit|preventDefault={handleSubmit} transition:slide>
 	<div class="flex flex-col text-sm mb-2">
 		<p>{objective_name}
-		<Dp bind:selectedValue={selectedValue} ></Dp>
+			<!-- <Select {items} value="One" /> -->			
+		<Dp bind:selectedValue={selectedValue}></Dp>
 	</div>
 
 	<div class="flex flex-col text-sm mb-2">

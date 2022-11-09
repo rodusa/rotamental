@@ -4,17 +4,17 @@
 	//import Select from 'svelte-select@beta';
 	import Select from 'svelte-select';
 	export let selectedValue;
-	let value = selectedValue;
+	//let value = selectedValue;
 	//const items = ['One', 'Two', 'Three'];
-	const items = ['Concurso Polícia Federal', 'Entrevista de Emprego', 'ENEM'];
-	
-	
+	const items = [
+	    {value: '114', label: 'Concurso Polícia Federal2'},
+		{value: '115', label: 'Entrevista de Emprego2'},
+		{value: '116', label: 'ENEM2'}	
+		];	
 </script>
 
 <h2>Default</h2>
-<Select {items} bind:value ></Select>
-
-
+<Select {items} value="{selectedValue}" ></Select>
 
 <style>	
 	/* 	
