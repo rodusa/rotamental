@@ -3,11 +3,9 @@ import { writable } from "svelte/store";
 export const objectives = writable([]);
 export const objectiveItem = writable();
 
-export const addObjective = (text) => {
-    objectives.update((current) => {
-        const newObjectives = [...current, {text, completed: false, id: Date.now()}];
-        return newObjectives;
-    })
+
+export const addItems = (items) => {
+    objectives.set(items);    
 }
 
 export const deleteTodo = (id) => {

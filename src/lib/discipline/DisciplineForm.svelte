@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as utils from '../../common/utils';
 	import { slide} from "svelte/transition";
+	import { objectives } from '../../stores/objectiveStore';
 	import { addDiscipline, disciplineItem } from '../../stores/disciplineStore';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
@@ -11,36 +12,62 @@
 	import Dp from '$lib/selectbox/Select.svelte';
 
 	export let showForm = true;
-	export let objectives;
+	//export let objectives;
 
-	const dispatch = createEventDispatcher();	
+	const dispatch = createEventDispatcher();
+	let ar_objectives = new Promise(()=>[]) ;	
 	let showModal = false;
-	let selectedValue = "114";
+	let selectedValue = null;
 	let chip_value = 0;
 	let discipline = {};
 	let todo = '';
 	let objective_name;
+	let objective_id = "";
 	
 	// function handleSelect(event) {
    	//  console.log('selected item', event.detail);
     // 	// .. do something here 🙂
   	// }
 
-	onMount(async () => {
-		
+	onMount(async () => {	
 		// Edit item
 		disciplineItem.subscribe(objval => {
 			if (objval && objval.name) {
 				discipline = objval;
 				todo = discipline ? discipline.name : '';
 				chip_value =  discipline ? discipline.area : chip_value;
+				selectedValue = JSON.stringify(objval.objective_id);
+				let x = selectedValue;
+				objectives.subscribe((data) => {
+					ar_objectives  = data.map((item) => ({ value: JSON.stringify(item.id), label: item.name }));
 
-				// get selected Dropdown
-				objectives.then((result) => { 
-				let item = result.data.find(item => item.id === discipline.objective_id);
-					objective_name = item.name;
+					console.log(ar_objectives);					
 				});
 
+				// let x = await ar_objectives;
+				// let z = x;
+				// let ar_objectives = async () => {
+				// 	//let m = objectives;
+				// 	let m = await $objectives;
+				// 	console.log(m);
+				// 	return await $objectives;
+					
+				// };
+				//let ar_objectives = await $objectives;
+				
+				// get selected Dropdown
+				
+				//if (typeof objectives != 'undefined') {
+					//let m = $objectives;
+
+					// $objectives.then((result) => { 
+					// 	let item = result.data.find(item => item.id === discipline.objective_id);
+					// 	objective_name = item.name;
+					// 	// let objective_items  = result.data.map((item) => ({ ...item, value: item.id }));
+					// 	// let x = objective_items;
+					// });
+
+				//}
 			}
 		})
 	});
@@ -115,9 +142,9 @@
 
 <form class="my-6" on:submit|preventDefault={handleSubmit} transition:slide>
 	<div class="flex flex-col text-sm mb-2">
-		<p>{objective_name}
+		<p>{selectedValue} - {objective_name}
 			<!-- <Select {items} value="One" /> -->			
-		<Dp bind:selectedValue={selectedValue}></Dp>
+		<Dp bind:selectedValue={selectedValue} bind:items={ar_objectives}></Dp>
 	</div>
 
 	<div class="flex flex-col text-sm mb-2">

@@ -1,6 +1,7 @@
 <script>
     import {writable} from 'svelte/store';
     import { onMount } from 'svelte';
+    import { addItems } from '../../stores/objectiveStore';
     import { disciplineItem } from '../../stores/disciplineStore';
     import DisciplineForm from "$lib/discipline/DisciplineForm.svelte"; 
     import Discipline from "$lib/discipline/DisciplineItem.svelte"; 
@@ -14,10 +15,12 @@
     let showForm = false;
     //let result = {};
     let response = writable(new Promise(()=>{}));
+    let data = {};
     let response_objectives = writable(new Promise(()=>{}));
 
     let hostname = `${utils.getAPIHostname(url)}/api/v1/disciplines/#index`;
     let objectives_hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`;
+    console.log(objectives_hostname);
     let ar_objectives = []; 
     
     function showAddBox() {
@@ -29,16 +32,20 @@
 		showForm=true;
 	}
     
-
     onMount(async () => {
         response = getDisciplines(hostname, true);
         //$response.then((response) => {
-        response_objectives = getObjectives(objectives_hostname, true);
+        response_objectives = getObjectives(objectives_hostname, true);        
+        let result = await $response_objectives;
+        
+        addItems(result.data);
+
         //ar_objectives = await $response_objectives;
         
         //var item = ar_objectives.data.find(item => item.id === 114);
         //console.log(item);
         let x = 5;
+        let m = 5;
 
         //})
 
@@ -68,7 +75,7 @@
 
 	<div
     class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">
-        <DisciplineForm on:message={handleMessage} bind:showForm={showForm} bind:objectives={$response_objectives}  />
+        <DisciplineForm on:message={handleMessage} bind:showForm={showForm} />
     </div>
     {/if}
     {#await $response}

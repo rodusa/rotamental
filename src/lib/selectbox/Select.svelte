@@ -6,6 +6,8 @@
 	export let selectedValue;
 	//let value = selectedValue;
 	//const items = ['One', 'Two', 'Three'];
+//	export let items; 
+	
 	const items = [
 	    {value: '114', label: 'Concurso Polícia Federal2'},
 		{value: '115', label: 'Entrevista de Emprego2'},
