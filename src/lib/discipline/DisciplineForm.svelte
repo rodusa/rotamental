@@ -5,6 +5,7 @@
 	import { addDiscipline, disciplineItem } from '../../stores/disciplineStore';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	
 	import MyModal from '$lib/modal/modal.svelte';
 	// import Chip from '$lib/chips/Chip.svelte';
 	// import ChipItem from '$lib/chips/ChipItem.svelte';
