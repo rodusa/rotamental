@@ -15,7 +15,8 @@
 	//export let objectives;
 
 	const dispatch = createEventDispatcher();
-	let ar_objectives = new Promise(()=>[]) ;	
+	//let ar_objectives = [new Promise(()=>[])] ;	
+	let ar_objectives = [];	
 	let showModal = false;
 	let selectedValue = null;
 	let chip_value = 0;
@@ -28,48 +29,34 @@
    	//  console.log('selected item', event.detail);
     // 	// .. do something here 🙂
   	// }
+	loadObjectives();	
+	loadDisciplines();
 
-	onMount(async () => {	
-		// Edit item
+	async function loadDisciplines() {
 		disciplineItem.subscribe(objval => {
 			if (objval && objval.name) {
 				discipline = objval;
 				todo = discipline ? discipline.name : '';
 				chip_value =  discipline ? discipline.area : chip_value;
 				selectedValue = JSON.stringify(objval.objective_id);
-				let x = selectedValue;
-				objectives.subscribe((data) => {
-					ar_objectives  = data.map((item) => ({ value: JSON.stringify(item.id), label: item.name }));
-
-					console.log(ar_objectives);					
-				});
-
-				// let x = await ar_objectives;
-				// let z = x;
-				// let ar_objectives = async () => {
-				// 	//let m = objectives;
-				// 	let m = await $objectives;
-				// 	console.log(m);
-				// 	return await $objectives;
-					
-				// };
-				//let ar_objectives = await $objectives;
-				
-				// get selected Dropdown
-				
-				//if (typeof objectives != 'undefined') {
-					//let m = $objectives;
-
-					// $objectives.then((result) => { 
-					// 	let item = result.data.find(item => item.id === discipline.objective_id);
-					// 	objective_name = item.name;
-					// 	// let objective_items  = result.data.map((item) => ({ ...item, value: item.id }));
-					// 	// let x = objective_items;
-					// });
-
-				//}
+				let x = selectedValue;						
 			}
 		})
+
+	}
+	async function loadObjectives() {
+		objectives.subscribe((data) => {
+					ar_objectives  = data.map((item) => ({ value: JSON.stringify(item.id), label: item.name }));
+					//return ar_objectives;
+					let x = ar_objectives;
+					console.log(ar_objectives);					
+				});
+	}
+
+	onMount(async () => {	
+		// Edit item
+	
+	
 	});
 		
 	// });	
@@ -144,7 +131,7 @@
 	<div class="flex flex-col text-sm mb-2">
 		<p>{selectedValue} - {objective_name}
 			<!-- <Select {items} value="One" /> -->			
-		<Dp bind:selectedValue={selectedValue} bind:items={ar_objectives}></Dp>
+		<Dp bind:selectedValue={selectedValue} bind:myitems={ar_objectives}></Dp>
 	</div>
 
 	<div class="flex flex-col text-sm mb-2">
