@@ -10,6 +10,7 @@ export const addDiscipline = (text) => {
     })
 }
 
+
 export const deleteTodo = (id) => {
     disciplines.update(disciplines => disciplines.filter(item => item.id != id));
 }
