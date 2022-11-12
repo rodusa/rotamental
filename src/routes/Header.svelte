@@ -19,17 +19,16 @@
 			<li class:active={$page.url.pathname === '/'}>
 				<a href="/">Home</a>
 			</li>
-			<li class:active={$page.url.pathname === '/home2'}>
-				<a href="/home2">Index</a>
+
+			<li class:active={$page.url.pathname === '/index'}>
+				<a href="/index">index</a>
 			</li>
+
 			<li class:active={$page.url.pathname === '/objectives'}>
 				<a href="/objectives">Objetivos</a>
 			</li>
 			<li class:active={$page.url.pathname === '/objectives'}>
 				<a href="/disciplines">Disciplines</a>
-			</li>
-			<li class:active={$page.url.pathname === '/dropdown'}>
-				<a href="/dropdown">Select Box</a>
 			</li>
 
 		</ul>

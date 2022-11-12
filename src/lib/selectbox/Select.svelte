@@ -3,8 +3,9 @@
 
 	//import Select from 'svelte-select@beta';
 	import Select from 'svelte-select';
-	export let selectedValue;
+	export let editValue;
 	export let myitems;
+	export let selectedValue = null;
 	//let value = selectedValue;
 	//const items = ['One', 'Two', 'Three'];
 //	export let items; 
@@ -15,10 +16,15 @@
 	// 	{value: '115', label: 'Entrevista de Emprego2'},
 	// 	{value: '116', label: 'ENEM2'}	
 	// 	];	
+
+    function handleSelect(e) {
+		selectedValue = e.detail;
+        //console.log(e.detail);
+    }
 </script>
 
-<h2>Default</h2>
-<Select {items} value="{selectedValue}" ></Select>
+<h2>Objetivo</h2>
+<Select {items} value="{editValue}" on:change={handleSelect} ></Select>
 
 <style>	
 	/* 	

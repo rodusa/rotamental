@@ -1,70 +1,29 @@
 <script lang="ts">
 	import * as utils from '../../common/utils';
 	import { slide} from "svelte/transition";
-	import { objectives } from '../../stores/objectiveStore';
-	import { addDiscipline, disciplineItem } from '../../stores/disciplineStore';
+	import { objectiveItem } from '../../stores/objectiveStore';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-
-	
 	import MyModal from '$lib/modal/modal.svelte';
-	// import Chip from '$lib/chips/Chip.svelte';
-	// import ChipItem from '$lib/chips/ChipItem.svelte';
+	import Chip from '$lib/chips/Chip.svelte';
+	import ChipItem from '$lib/chips/ChipItem.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import Dp from '$lib/selectbox/Select.svelte';
-
 	export let showForm = true;
-	//export let objectives;
-
-	const dispatch = createEventDispatcher();
-	//let ar_objectives = [new Promise(()=>[])] ;	
-	let ar_objectives = [];	
+	const dispatch = createEventDispatcher();	
 	let showModal = false;
-	let objective_id = null;
-	let selectedVal = null
 	let chip_value = 0;
-	let discipline = {};
+	let objective = {};
 	let todo = '';
-	let objective_name;
-	//let objective_id = "";
 	
-	// function handleSelect(event) {
-   	//  console.log('selected item', event.detail);
-    // 	// .. do something here 🙂
-  	// }
-	loadObjectives();	
-	loadDisciplines();
-
-	async function loadDisciplines() {
-		disciplineItem.subscribe(objval => {
+	onMount(async () => {
+		// Edit item
+		objectiveItem.subscribe(objval => {
 			if (objval && objval.name) {
-				discipline = objval;
-				todo = discipline ? discipline.name : '';
-				chip_value =  discipline ? discipline.area : chip_value;
-				objective_id = JSON.stringify(objval.objective_id);
-				let x = objective_id;						
+				objective = objval;
+				todo = objective ? objective.name : '';
+				chip_value =  objective ? objective.area : chip_value;
 			}
 		})
-
-	}
-	async function loadObjectives() {
-		objectives.subscribe((data) => {
-					ar_objectives  = data.map((item) => ({ value: JSON.stringify(item.id), label: item.name }));
-					//return ar_objectives;
-					let x = ar_objectives;
-					console.log(ar_objectives);					
-				});
-	}
-
-    function handleSelect(e) {
-		alert(e);
-        console.log(e.detail);
-    }
-
-	onMount(async () => {	
-		// Edit item
-	
-	
 	});
 		
 	// });	
@@ -94,33 +53,30 @@
 	async function saveRecord() {		
 		name = todo;
 		let res = null;	
-		let _objective_id = selectedVal ? parseInt(selectedVal?.value) : null;
-		let x = _objective_id;
-
 		
 		// Edit mode (check if id exists)
-		if (discipline.id != undefined) {
+		if (objective.id != undefined) {
 			// Edit mode
-			res = await fetch(`${utils.getAPIHostname(url)}/api/v1/disciplines/${discipline.id}`, {
+			res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives/${objective.id}`, {
 			//const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					name: discipline.name, area: chip_value, objective_id: _objective_id
+					name: objective.name, area: chip_value
 				})
 			});
 
 		}else{
 			//New mode
-				res = await fetch(`${utils.getAPIHostname(url)}/api/v1/disciplines#create`, {
+				res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					name: discipline.name, area: chip_value
+					name: objective.name, area: chip_value
 				})
 			});
 		}
@@ -136,38 +92,23 @@
 		result = JSON.stringify(json);
 		showForm = false;
 	}
-
-	$: {
-		let x = selectedVal;
-		let m = x;
-	}
 </script>
 
 <form class="my-6" on:submit|preventDefault={handleSubmit} transition:slide>
 	<div class="flex flex-col text-sm mb-2">
-		<!-- <p>{objective_id} - {objective_name} -->
-			<!-- <Select {items} value="One" /> -->			
-			<!-- <p>{selectedVal?.value}</p> -->
-		<Dp bind:editValue={objective_id} bind:myitems={ar_objectives} bind:selectedValue={selectedVal}></Dp>
-	</div>
-
-
-	<div class="flex flex-col text-sm mb-2">
-
-		<label class="font-bold text-sm mb-" for="todo">Disciplina</label>
+		<label class="font-bold text-sm mb-2" for="todo">Objetivo de Estudo</label>
 		<input
 			type="text"
-			bind:value={discipline.name}
+			bind:value={objective.name}
 			name="todo"
 			placeholder="Watch"
-			class="appearance-none shadow-sm border border-gray-200 p-2 focus:outline-none focus:border-blue-500 rounded-lg"
+			class="appearance-none shadow-sm border border-gray-200 p-2 focus:outline-none focus:border-red-500 rounded-lg"
 		/>
 	</div>
-
 	<!-- <button type="submit" class="w-full shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Submit</button> -->
 	<h3>selected value<small>({chip_value})</small></h3>
 	
-	<!-- <Chip bind:chip_value>
+	<Chip bind:chip_value>
 		<div  class="mt-2 mb-2">
 		<ChipItem>Concurso Público</ChipItem>
 		<ChipItem>Entrevista de Emprego</ChipItem>
@@ -176,7 +117,7 @@
 		<ChipItem>Bolsa de Estudos</ChipItem>
 		<ChipItem>Outros</ChipItem>
 	</div>
-	</Chip> -->
+	</Chip>
 	
 	<div class="flex flex-row justify-between mx-5 my-5">
 	<button
@@ -203,3 +144,15 @@
 		<p>teste</p>
 	</MyModal>
 {/if}
+
+<style>
+	/* input {
+		border: 1px solid transparent;
+	}
+
+	input:focus-visible {
+		box-shadow: inset 1px 1px 6px rgba(0, 0, 0, 0.1);
+		border: 1px solid #ff3e00 !important;
+		outline: none;
+	} */
+</style>
