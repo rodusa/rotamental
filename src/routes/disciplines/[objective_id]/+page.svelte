@@ -12,13 +12,21 @@
     import * as utils from '../../../common/utils';
 
     let url = $page.url;
+    let objective_id = $page.params.objective_id;
+    //let queryParams = url.pathname.split("/") 
+    // let objective_id = "";
+    // if (queryParams.length==3) {
+    //     objective_id = queryParams[2];
+    // }
     let showForm = false;
     //let result = {};
     let response = writable(new Promise(()=>{}));
     let data = {};
     let response_objectives = writable(new Promise(()=>{}));
 
-    let hostname = `${utils.getAPIHostname(url)}/api/v1/disciplines/#index`;
+    //let hostname = `${utils.getAPIHostname(url)}/api/v1/disciplines/#index`;
+    let hostname = `${utils.getAPIHostname(url)}/api/v1/disciplines?objective_id=${objective_id}`;
+    //http://127.0.0.1:3000/api/v1/disciplines?objective_id=112
     let objectives_hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`;
     console.log(objectives_hostname);
     let ar_objectives = []; 
