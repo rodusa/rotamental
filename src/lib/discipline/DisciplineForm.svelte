@@ -120,7 +120,7 @@
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					name: discipline.name, area: chip_value
+					name: discipline.name, area: chip_value, objective_id: _objective_id
 				})
 			});
 		}

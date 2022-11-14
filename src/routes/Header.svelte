@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import { DEFAULT_CONFIG } from '../stores/globalStore';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 </script>
@@ -31,16 +32,14 @@
 				<a href="/disciplines">Disciplines</a>
 			</li>
 
-		</ul>
+		</ul>		
 		<svg viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
 		</svg>
 	</nav>
 
-	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
+	<div>
+		{$DEFAULT_CONFIG.name}
 	</div>
 </header>
 
