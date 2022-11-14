@@ -13,6 +13,7 @@
 
     let url = $page.url;
     let objective_id = $page.params.objective_id;
+    
     //let queryParams = url.pathname.split("/") 
     // let objective_id = "";
     // if (queryParams.length==3) {
