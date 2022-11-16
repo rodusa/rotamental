@@ -31,7 +31,7 @@
 
 		if (res.status==204) {
 			dispatch('message', {
-				text: 'NEW_RECORD_ADDED!'
+				text: 'NEW_RECORD_DELETED!'
 			});
 		}
 
