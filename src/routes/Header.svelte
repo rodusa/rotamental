@@ -17,12 +17,12 @@
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
 		<ul>
-			<li class:active={$page.url.pathname === '/'}>
+			<!-- <li class:active={$page.url.pathname === '/'}>
 				<a href="/">Home</a>
 			</li>
-
+ -->
 			<li class:active={$page.url.pathname === '/index'}>
-				<a href="/index">index</a>
+				<a href="/index">Home</a>
 			</li>
 
 			<li class:active={$page.url.pathname === '/objectives'}>

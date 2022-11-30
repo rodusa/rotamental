@@ -10,7 +10,8 @@
 	//const items = ['One', 'Two', 'Three'];
 //	export let items; 
 	export let items = myitems;
-	let x = items;
+	export let disabled = false;
+	// let x = items;
 	// export let items = [
 	//     {value: '114', label: 'Concurso Polícia Federal2'},
 	// 	{value: '115', label: 'Entrevista de Emprego2'},
@@ -24,7 +25,7 @@
 </script>
 
 <h2>Objetivo</h2>
-<Select {items} value="{editValue}" on:change={handleSelect} ></Select>
+<Select {items} value="{editValue}" on:change={handleSelect} {disabled}></Select>
 
 <style>	
 	/* 	

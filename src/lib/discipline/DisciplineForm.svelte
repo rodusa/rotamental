@@ -25,6 +25,7 @@
 	let chip_value = 0;
 	let discipline = {};
 	let todo = '';
+	let disabledDp = false;
 	let objective_name;
 	//let objective_id = "";
 	
@@ -37,12 +38,13 @@
 
 	async function loadDisciplines() {
 		disciplineItem.subscribe(objval => {
-			if (objval && objval.name) {
+			let x = objval;
+			if (objval && objval.hasOwnProperty('name')) {
 				discipline = objval;
 				todo = discipline ? discipline.name : '';
 				chip_value =  discipline ? discipline.area : chip_value;
 				objective_id = JSON.stringify(objval.objective_id);
-				let x = objective_id;						
+				disabledDp = objval.disabled;
 			}
 		})
 
@@ -51,7 +53,6 @@
 		objectives.subscribe((data) => {
 					ar_objectives  = data.map((item) => ({ value: JSON.stringify(item.id), label: item.name }));
 					//return ar_objectives;
-					let x = ar_objectives;
 					console.log(ar_objectives);					
 				});
 	}
@@ -94,9 +95,8 @@
 	async function saveRecord() {		
 		name = todo;
 		let res = null;	
-		let _objective_id = selectedVal ? parseInt(selectedVal?.value) : null;
+		let _objective_id = objective_id ? parseInt(objective_id) : null;
 		let x = _objective_id;
-
 		
 		// Edit mode (check if id exists)
 		if (discipline.id != undefined) {
@@ -148,7 +148,7 @@
 		<!-- <p>{objective_id} - {objective_name} -->
 			<!-- <Select {items} value="One" /> -->			
 			<!-- <p>{selectedVal?.value}</p> -->
-		<Dp bind:editValue={objective_id} bind:myitems={ar_objectives} bind:selectedValue={selectedVal}></Dp>
+		<Dp bind:editValue={objective_id} bind:myitems={ar_objectives} bind:selectedValue={selectedVal} bind:disabled={disabledDp}></Dp>
 	</div>
 
 

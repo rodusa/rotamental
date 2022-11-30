@@ -8,14 +8,16 @@
 	
 	export let showForm = false;
 
-	
+
     const dispatch = createEventDispatcher(); 
 	
 	let result = null;
     let name = 'baz';
 	let url = $page.url;
-
-	function setCurrent(obj) {		
+	//{id: 13, name: 'Dir Const.', created_at: '2022-11-14T18:20:01.049Z', updated_at: '2022-11-14T18:20:01.049Z', objective_id: 112}
+	function setCurrent(obj) {	
+		console.log(obj);	
+		obj.disabled=false;
 		disciplineItem.set(obj);
 	}
 	

@@ -10,9 +10,10 @@
     import {getData as getObjectives} from '../../objectives/fetcher.js';
     import { page } from '$app/stores';
     import * as utils from '../../../common/utils';
+	import { parse } from 'cookie';
 
     let url = $page.url;
-    let objective_id = $page.params.objective_id;
+    let objective_id = $page.params.objective_id ? parseInt($page.params.objective_id) : null;
     
     //let queryParams = url.pathname.split("/") 
     // let objective_id = "";
@@ -32,12 +33,26 @@
     console.log(objectives_hostname);
     let ar_objectives = []; 
     
+	//{id: 13, name: 'Dir Const.', created_at: '2022-11-14T18:20:01.049Z', updated_at: '2022-11-14T18:20:01.049Z', objective_id: 112}
+	// function setCurrent(obj) {	
+	// 	console.log(obj);	
+	// 	disciplineItem.set(obj);
+	// }
+
+
     function showAddBox() {
+        let x = $disciplineItem;
         // RESET FORM to Blank fieldsd
         if ($disciplineItem) {
             $disciplineItem.name = '';
-            //$disciplineItem.area = 0;
+            $disciplineItem.objective_id = objective_id;
+            $disciplineItem.disabled = true;
+        }else{
+            // item is null and does not exist 
+            let obj = {id: null, name: '', created_at: null, updated_at: null, objective_id: objective_id, disabled: true}
+            disciplineItem.set(obj);
         }
+
 		showForm=true;
 	}
     
