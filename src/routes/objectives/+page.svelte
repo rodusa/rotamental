@@ -4,6 +4,7 @@
     import { objectiveItem } from '../../stores/objectiveStore';
     import ObjectiveForm from "$lib/objective/ObjectiveForm.svelte"; 
     import Objective from "$lib/objective/ObjectiveItem.svelte"; 
+    
     import {Circle2} from 'svelte-loading-spinners';
     import {getData} from './fetcher.js';
     import { page } from '$app/stores';
