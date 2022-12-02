@@ -47,7 +47,7 @@
 		type="submit"
 		class=" w-28 shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 "
         on:click={showAddBox}
-		>Adicionar</button>
+		>Adicionar2</button>
 	</div>
     {#if showForm}
 

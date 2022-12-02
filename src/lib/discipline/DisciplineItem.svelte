@@ -1,5 +1,6 @@
 <script lang="ts">
 	import * as utils from '../../common/utils';
+	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
     import { disciplineItem } from '../../stores/disciplineStore';
 	import { page } from '$app/stores';
@@ -66,9 +67,8 @@
 	<button
 	type="button"
 	class="mr-3 text-sm bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-	on:click={() => {showForm=true; setCurrent(discipline);}}>Conteúdo</button
->
-
+	on:click={() => {goto('/content');}}>Conteúdo</button
+	>
 
 	<button
 		type="button"
