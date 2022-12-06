@@ -5,7 +5,7 @@
 </script>
 
 <!-- <div class="app"> -->
-	<div class="container mx-auto my-6 max-w-2xl">
+<div class="container mx-auto my-6">
 	<Header />
 	
 
