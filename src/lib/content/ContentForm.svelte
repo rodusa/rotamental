@@ -144,11 +144,11 @@
 			let firstNumber = level2.split(".");
 			let n = firstNumber[0];
 			if (level1 == n) {
-				ar_children.push({data: text2})
+				ar_children.push({data: level2 + '. '+ text2})
 			}
 	  }	 
 	  console.log('ar_data');
-	  ar_data.push({data: text1, children: ar_children });
+	  ar_data.push({data: level1 + '. ' + text1, children: ar_children });
 	}
 
 	console.log(ar_data);
