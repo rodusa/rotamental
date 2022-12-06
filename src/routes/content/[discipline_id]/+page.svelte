@@ -38,8 +38,8 @@
 	<div class="flex flex-col text-sm mb-2">
 		<button
 			type="submit"
-			class=" w-28 shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 "
-			on:click={showAddBox}>Editar</button
+			class=" w-40 shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 "
+			on:click={showAddBox}>Importar Conteúdo</button
 		>
 	</div>
 	{#if showForm}

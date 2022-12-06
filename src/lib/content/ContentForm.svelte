@@ -191,7 +191,7 @@
 	<button
 		type="submit"
 		class="w-28 shadow-sm rounded bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 "
-		on:click={saveContent}>Salvar</button
+		on:click={saveContent}>Importar</button
 	>
 	</div>
 
