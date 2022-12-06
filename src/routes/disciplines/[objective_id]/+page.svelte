@@ -83,6 +83,8 @@
 		console.log(event.detail.text);
 	}
 
+    
+
     //let  result = writable(new Promise(()=>[]));
  
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import { DEFAULT_CONFIG } from '../../stores/globalStore';
+	import { GLOBAL_CONFIG } from '../../stores/globalStore';
 	import * as utils from '../../common/utils';
 	import { onMount } from 'svelte';
     import { objectiveItem } from '../../stores/objectiveStore';
@@ -41,7 +41,7 @@
 	}
 
 	function gotoDisciplines(obj) {	
-		DEFAULT_CONFIG.set({name: obj.name});	
+		GLOBAL_CONFIG.set({name: obj.name});	
 		objectiveItem.set(obj);
 		goto(`/disciplines/${obj.id}`); 
 		//showForm=true; 

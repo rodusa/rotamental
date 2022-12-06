@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import { DEFAULT_CONFIG } from '../stores/globalStore';
+	import { GLOBAL_CONFIG } from '../stores/globalStore';
 	import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
 </script>
@@ -31,9 +31,9 @@
 			<!-- <li class:active={$page.url.pathname === '/disciplines'}>
 				<a href="/disciplines/117">Disciplines</a>
 			</li> -->
-			<li class:active={$page.url.pathname === '/content'}>
+			<!-- <li class:active={$page.url.pathname === '/content'}>
 				<a href="/content">Conteúdo</a>
-			</li>
+			</li> -->
 
 		</ul>		
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -42,7 +42,7 @@
 	</nav>
 
 	<div>
-		{$DEFAULT_CONFIG.name}
+		{$GLOBAL_CONFIG.name}
 	</div>
 </header>
 

@@ -1,3 +1,3 @@
 import { writable } from "svelte/store";
 
-export const DEFAULT_CONFIG = writable({name: ''});
+export const GLOBAL_CONFIG = writable({name: ''});

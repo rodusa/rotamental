@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
     import { objectiveItem } from '../../stores/objectiveStore';
-	import { DEFAULT_CONFIG } from '../../stores/globalStore';
+	import { GLOBAL_CONFIG } from '../../stores/globalStore';
 
 	import { page } from '$app/stores';
     import { createEventDispatcher } from 'svelte';    
@@ -23,7 +23,7 @@
 
 
 	function setCurrent(obj) {	
-		DEFAULT_CONFIG.set({name: obj.name});	
+		GLOBAL_CONFIG.set({name: obj.name});	
 		objectiveItem.set(obj);
 		goto(`/disciplines/${obj.id}`); 
 		//showForm=true; 
