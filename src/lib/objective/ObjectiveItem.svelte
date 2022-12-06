@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { DEFAULT_CONFIG } from '../../stores/globalStore';
 	import * as utils from '../../common/utils';
 	import { onMount } from 'svelte';
     import { objectiveItem } from '../../stores/objectiveStore';
@@ -37,6 +39,14 @@
 
 		//result = JSON.stringify(json);		
 	}
+
+	function gotoDisciplines(obj) {	
+		DEFAULT_CONFIG.set({name: obj.name});	
+		objectiveItem.set(obj);
+		goto(`/disciplines/${obj.id}`); 
+		//showForm=true; 
+	}
+
 </script>
 
 <li
@@ -56,7 +66,15 @@
 
 	<button
 		type="button"
-		class="text-sm bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+		class="mr-3 text-sm bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+		on:click={() => {gotoDisciplines(objective);}}>Disciplinas</button
+	>
+
+	<button
+		type="button"
+		class="mr-3 text-sm bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
 		on:click={() => deleteObjective(objective.id)}>Delete</button
 	>
+
+
 </li>
