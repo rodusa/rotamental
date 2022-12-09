@@ -132,6 +132,7 @@
 		console.log(level + ' - ' + text);
 	}	
 
+	// MERGE ARRAYS
 	for (let i = 0; i < ar_level1.length; i++) { 	 
 	  let ar_children = [];
 	  let level1 = ar_level1[i]['level'];
@@ -159,10 +160,27 @@
 		children: ar_data
 	}
 
+	await saveTopic(ar_data);
 	//console.log(jsonTree);
 
 	//console.log(defaultVal);	
 	}
+
+	async function saveTopic(ar_data) {
+		let res = null;	
+		//New mode
+		res = await fetch(`${utils.getAPIHostname(url)}/api/v1/topics#create`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			data: ar_data
+		})
+	});
+
+	}
+
 
 </script>
 
