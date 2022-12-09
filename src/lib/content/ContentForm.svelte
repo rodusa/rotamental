@@ -145,17 +145,17 @@
 			let firstNumber = level2.split(".");
 			let n = firstNumber[0];
 			if (level1 == n) {
-				ar_children.push({data: level2 + '. '+ text2})
+				ar_children.push({name: text2, numeral: level2})
 			}
 	  }	 
 	  console.log('ar_data');
-	  ar_data.push({data: level1 + '. ' + text1, children: ar_children });
+	  ar_data.push({name: text1, numeral: level1, children: ar_children });
 	}
 
 	console.log(ar_data);
 
 	jsonTree = {
-		data: 'Root',
+		name: 'Root',
 		expanded: false,
 		children: ar_data
 	}

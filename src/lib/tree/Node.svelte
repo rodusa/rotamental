@@ -17,7 +17,7 @@
 		<OpenedIcon/>
 	{/if}
 	<div class="flex justify-between w-full">
-		<div>{node.data}</div>
+		<div>{node.name}</div>
 		<div>
 			<button type="submit" class="w-28 shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Estudar</button>
 		</div>

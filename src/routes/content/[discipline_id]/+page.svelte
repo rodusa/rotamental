@@ -8,16 +8,16 @@
 	let jsonTree = {};
 
 	let data = {
-		data: 'Root',
+		name: 'Root',
 		expanded: false,
 		children: [
 			{
-				data: 'Direito Constitucional',
+				name: 'Direito Constitucional',
 				expanded: false,
-				children: [{ data: 'Grand Child 1' }, { data: 'Grand Child 2' }]
+				children: [{ name: 'Grand Child 1' }, { name: 'Grand Child 2' }]
 			},
-			{ data: 'Constituição', expanded: false, children: [{ data: 'Grand Child 2' }] },
-			{ data: 'Poder Constituinte' }
+			{ name: 'Constituição', expanded: false, children: [{ name: 'Grand Child 2' }] },
+			{ name: 'Poder Constituinte' }
 		]
 	};
 
