@@ -39,7 +39,11 @@
     }
 
 	onMount(async () => {	
-		// Edit item
+		setTimeout(function(){
+    		console.log("Hello World");
+		}, 2000);
+
+		console.log("setTimeout() example...");
 	
 	
 	});
@@ -89,7 +93,6 @@
 		let level = m[2];
 		let text = m[3];
 		ar_level1.push({level, text});
-		console.log(level + ' - ' + text);
 
 	}	
 
@@ -109,7 +112,6 @@
 		let level = m[2];
 		let text = m[3];
 		ar_level2.push({level, text});
-		console.log(level + ' - ' + text);
 
 	}	
 
@@ -129,7 +131,6 @@
 		let level = m[2];
 		let text = m[3];
 		ar_level2.push({level, text});
-		console.log(level + ' - ' + text);
 	}	
 
 	// MERGE ARRAYS
@@ -148,11 +149,11 @@
 				ar_children.push({name: text2, numeral: level2})
 			}
 	  }	 
-	  console.log('ar_data');
+	  //console.log('ar_data');
 	  ar_data.push({name: text1, numeral: level1, children: ar_children });
 	}
 
-	console.log(ar_data);
+	//console.log(ar_data);
 
 	jsonTree = {
 		name: 'Root',
@@ -160,25 +161,36 @@
 		children: ar_data
 	}
 
-	await saveTopic(ar_data);
+	let log_result = await saveTopic(ar_data);
+
+	console.log(log_result);
 	//console.log(jsonTree);
 
 	//console.log(defaultVal);	
 	}
 
 	async function saveTopic(ar_data) {
+		let load;
 		let res = null;	
 		//New mode
-		res = await fetch(`${utils.getAPIHostname(url)}/api/v1/topics#create`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			data: ar_data
-		})
-	});
-
+		load = async () => {
+			res = await fetch(`${utils.getAPIHostname(url)}/api/v1/topics#create`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					data: ar_data
+				})		
+			});
+			if (res.ok) {
+				return res;
+			}else{
+				throw new Error('Error');
+			}
+		}
+		return load();
+		//console.log(res.body);
 	}
 
 

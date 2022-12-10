@@ -1,8 +1,17 @@
 <script>
+	import {writable} from 'svelte/store';
+	import { onMount } from 'svelte';
 	import Tree from '$lib/tree/Tree.svelte';
 	import ContentForm from '$lib/content/ContentForm.svelte';
+    import {getData} from './fetcher.js';
+	import { page } from '$app/stores';
+	import {Circle2} from 'svelte-loading-spinners';
+	import * as utils from '../../../common/utils';
 
+	let url = $page.url;
 	let showForm = false;
+    let response = writable(new Promise(()=>{}));
+    let hostname = `${utils.getAPIHostname(url)}/api/v1/topics#index`
 
 	let name = 'world';
 	let jsonTree = {};
@@ -21,16 +30,38 @@
 		]
 	};
 
+	//loadTopics();
+	async function loadTopics() {
+		console.log(hostname);
+        response = getData(hostname, true);
+		let result = await $response;
+		jsonTree = {
+			name: 'Root',
+			expanded: false,
+			children: result.data
+		}
+		data = jsonTree;
+		return data;
+		console.log(jsonTree);
+
+	}
+	
+	onMount(async () => {
+		loadTopics();
+		// console.log('On Mount');
+		// await loadTopics();
+	});
+
 	function showAddBox() {
 		// RESET FORM to Blank fieldsd
 		showForm = true;
 	}
 	
 	$: {
-		console.log('data');
-		console.log(data);
-		console.log('jsonTree');
-		//console.log(jsonTree);
+		// console.log('data');
+		// console.log(data);
+		// console.log('jsonTree');
+
 	}
 </script>
 
@@ -43,13 +74,20 @@
 		>
 	</div>
 	{#if showForm}
-		<div class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">
-			<ContentForm bind:showForm bind:jsonTree={data} />
+		<div class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">			
+			 <ContentForm bind:showForm bind:jsonTree={data} />			 			
 		</div>
 	{/if}
 
 	<div class="mt-10 mx-auto max-w-full">
-		<Tree {data} />
+		{#await $response}
+		<Circle2 size="60" color="#FF3E00" unit="px" duration="1s" />    
+		 {:then result}
+		 <Tree {data} />
+	 {:catch}
+	 <p>erro aqui</p>
+	 {/await}		
+		
 	</div>
 </main>
 
