@@ -39,7 +39,6 @@
 	// 	disciplineItem.set(obj);
 	// }
 
-
     function showAddBox() {
         let x = $disciplineItem;
         // RESET FORM to Blank fieldsd

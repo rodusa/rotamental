@@ -31,9 +31,18 @@
 	{/if}
 	<div class="flex justify-between w-full">
 		<div>{node ? node.name : "nothing"}</div>
-		<div>
-			<button type="submit" class="w-28 shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Estudar</button>
-		</div>
+		<!-- <pre>  {JSON.stringify(node, null, 2)}</pre> -->
+		{#if node && !node.children }
+			<div>
+				<button type="submit" class="w-28 shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Estudar</button>
+			</div>
+		{/if}			
+		<!-- {:else if node.children.length==0}
+			<div>
+				<button type="submit" class="w-28 shadow-sm rounded bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 ">Estudar</button>
+			</div>
+
+		{/if} -->
 	</div>
 
 </li>
