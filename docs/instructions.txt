@@ -17,3 +17,16 @@ https://github.com/TorstenDittmann/svelte-adapter-static-digitalocean
         }
     ]
 }
+
+
+
+
+
+<!-- 		
+		 <!-- {:then result}
+		 
+		 {(console.log(promise))} 
+		 <!-- <pre>  {JSON.parse(JSON.stringify(result), null, 2))}</pre> -->
+	 {:catch error}
+	 <p>erro aqui{error.message}</p>
+	 {/await}		 --> -->

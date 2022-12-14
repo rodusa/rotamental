@@ -8,7 +8,7 @@ const cache = new Map();
 let store = writable(new Promise(() => {}));
 
 export function getData(url, enable_cache) {
-    
+    let m = url;
     if (enable_cache && cache.has(url)) {
         // gets content from cache
         store.set(Promise.resolve(cache.get(url)))        
@@ -22,6 +22,7 @@ export function getData(url, enable_cache) {
             cache.set(url, data);            
         
         }
+        let x = 5;
         store.set(Promise.resolve(data));
     }
     load();

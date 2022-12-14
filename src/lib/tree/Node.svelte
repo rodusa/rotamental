@@ -2,29 +2,42 @@
 	import { slide } from 'svelte/transition';
 	import ClosedIcon from './ClosedIcon.svelte';
 	import OpenedIcon from './OpenedIcon.svelte';
+	import { onMount} from 'svelte';
+
 	export let node
 	export let level = 0
 	
+	onMount(async () => {	
+		
+		//_data = data;
+		//isLoading = false
+
+		//console.log(data);		
+
+	});
+	
 	function toggle() {
+		if (node) {
 		node.expanded = !node.expanded;
+		}
 	}
 </script>
 
 <li on:click={toggle} style="padding-left:{level*1}rem" transition:slide>
-	{#if !node.expanded }
+	{#if node && !node.expanded }
 		<ClosedIcon/>
 	{:else}
 		<OpenedIcon/>
 	{/if}
 	<div class="flex justify-between w-full">
-		<div>{node.name}</div>
+		<div>{node ? node.name : "nothing"}</div>
 		<div>
 			<button type="submit" class="w-28 shadow-sm rounded bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 ">Estudar</button>
 		</div>
 	</div>
 
 </li>
-{#if node.expanded && node.children}
+{#if node && node.expanded && node.children}
 		{#each node.children as child}
 			<svelte:self node={child} level={level+1}/>
 		{/each}

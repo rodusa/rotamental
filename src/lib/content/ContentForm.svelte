@@ -38,15 +38,9 @@
         console.log(e.detail);
     }
 
-	onMount(async () => {	
-		setTimeout(function(){
-    		console.log("Hello World");
-		}, 2000);
+	// onMount(async () => {	
 
-		console.log("setTimeout() example...");
-	
-	
-	});
+	// });
 		
 	// });	
 
