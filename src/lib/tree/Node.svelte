@@ -30,7 +30,7 @@
 		<OpenedIcon/>
 	{/if}
 	<div class="flex justify-between w-full">
-		<div>{node ? node.name : "nothing"}</div>
+		<div>{node ? (node.numeral + ' ' + node.name) : "nothing"}</div>
 		<!-- <pre>  {JSON.stringify(node, null, 2)}</pre> -->
 		{#if node && !node.children }
 			<div>
