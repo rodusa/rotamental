@@ -27,7 +27,7 @@ export async function load({page}) {
 	import {writable} from 'svelte/store';
 	import { onMount} from 'svelte';
 	import Tree from '$lib/tree/Tree.svelte';
-	import ContentForm from '$lib/content/ContentForm.svelte';
+	import ContentForm from '$lib/topic/topicForm.svelte';
     import {getData as getTopics} from './fetcher.js';
 	import { page } from '$app/stores';
 	import {Circle2} from 'svelte-loading-spinners';

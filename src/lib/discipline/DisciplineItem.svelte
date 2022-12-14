@@ -47,7 +47,7 @@
 	function gotoContent(item) {	
 		// GLOBAL_CONFIG.set({name: obj.name});	
 		// objectiveItem.set(obj);
-		goto(`/content/${item.id}`); 
+		goto(`/topics/${item.id}`); 
 		//showForm=true; 
 	}
 
