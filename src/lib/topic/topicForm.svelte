@@ -1,6 +1,8 @@
 <script lang="ts">
 	import * as utils from '../../common/utils';
 	import { slide} from "svelte/transition";
+	import { createEventDispatcher } from 'svelte';
+
 	import { objectives } from '../../stores/objectiveStore';
 	import { addDiscipline, disciplineItem } from '../../stores/disciplineStore';
 	import { onMount } from 'svelte';
@@ -10,8 +12,10 @@
 	import MyModal from '$lib/modal/modal.svelte';
 	// import Chip from '$lib/chips/Chip.svelte';
 	// import ChipItem from '$lib/chips/ChipItem.svelte';
-	import { createEventDispatcher } from 'svelte';
+	
 	import Dp from '$lib/selectbox/Select.svelte';
+
+	const dispatch = createEventDispatcher();
 
 	export let showForm = true;
 	export let jsonTree = {};
@@ -32,11 +36,12 @@
 	//loadObjectives();	
 	//loadDisciplines();
 
+	async function refreshPage() {
+		// first argument is the event name
+		// second is an object placed in ev.detail
+   	 	dispatch('message');
+  	}
 
-    function handleSelect(e) {
-		alert(e);
-        console.log(e.detail);
-    }
 
 	// onMount(async () => {	
 
@@ -155,9 +160,12 @@
 		children: ar_data
 	}
 
+	closeForm();
 	let log_result = await saveTopic(ar_data);
-
-	console.log(log_result);
+	refreshPage();
+	///let x = log_result;
+	
+	//console.log(log_result);
 	//console.log(jsonTree);
 
 	//console.log(defaultVal);	

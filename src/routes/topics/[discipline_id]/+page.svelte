@@ -1,28 +1,6 @@
 <!-- https://strapi.io/blog/how-to-create-a-blog-with-svelte-kit-strapi -->
 <!-- https://dev.to/sschuchlenz/how-the-page-load-function-works-in-svelte-sveltekit-328h -->
-<!-- <script context="module">
-export 	async function loadTopics() {		
-		isLoading= false;
-        response = getData(hostname, true);
-		let result = await $response;
-		
-			jsonTree = {
-				name: 'Root',
-				expanded: false,
-				children: result.data
-				};
-				
-			return jsonTree;		
-		};
 
-export async function load({page}) {
-	  const id = page.params.id;
-	  const url = `https://api.somedomain.tld/posts/${id}`;
-	  const res = await fetch(url);
-	  const product = await res.json();
-	  return {props: {post}}
-	}
-</script> -->
 <script>	
 	import {writable} from 'svelte/store';
 	import { onMount} from 'svelte';
@@ -32,6 +10,7 @@ export async function load({page}) {
 	import { page } from '$app/stores';
 	import {Circle2} from 'svelte-loading-spinners';
 	import * as utils from '../../../common/utils';
+	
 	import { json } from '@sveltejs/kit';
 
 	let url = $page.url;
@@ -59,68 +38,11 @@ export async function load({page}) {
 		]
 	};
 
-
-	// async function loadTopics() {		
-	// 	isLoading= false;
-    //     response = getData(hostname, true);
-	// 	let result = await $response;
-		
-	// 		jsonTree = {
-	// 			name: 'Root',
-	// 			expanded: false,
-	// 			children: result.data
-	// 			};
-				
-	// 		return jsonTree;		
-	// 	};
-		
-		
-		// let x = result;
-		// //data = jsonTree;
-		// return jsonTree;
-		// return getData(hostname, true).subscribe((result) => {
-		// 		return result.then((r)=>{
-		// 			//data = r;
-
-		// 			jsonTree = {
-		// 			name: 'Root',
-		// 			expanded: false,
-		// 			children: r.data
-		// 			};
-		// 			return jsonTree;
-		// 	});
-	//};
-	//promise = loadTopics();
-
 	onMount(async () => {	
-		// response = getDisciplines(hostname, true);        
         response = getTopics(hostname, true); 
-     
-        //let result = await $response;		
-		
-		//let result = await $response;
-		//data = await loadTopics();
-		//isLoading = false;
-		// loadTopics().then((response)=>{ 
-		// 	console.log("shit");
-		// 	console.log(response);			
-		// 	isLoading = false;
-		// 	data = response;
-
-		// //return response;							
-		// }).catch((error) => {console.log(error.message);});
-
 		console.log('On Mount');
-		
-
-		//  loadTopics().then((result)=> {
-		// 	data = result;
-		 	
-		//  });
 
 		console.log("setTimeout() example...");
-			
-
 	});
 
 	function showAddBox() {
@@ -128,14 +50,12 @@ export async function load({page}) {
 		showForm = true;
 	}
 	
-	$: (async () => {
-		
-		//data = data;
-		// console.log('data');
-		// console.log(data);
-		// console.log('jsonTree');
+	async function handleMessage(event) {
+		//console.log(event.detail.state);
+		response = getTopics(hostname, true); 		
+	}
 
-	});
+
 </script>
 
 <main class="mt-10 mx-auto max-w-6xl">
@@ -148,7 +68,7 @@ export async function load({page}) {
 	</div>
 	{#if showForm}
 		<div class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">			
-			 <ContentForm bind:showForm bind:jsonTree={data} />			 			
+			 <ContentForm bind:showForm bind:jsonTree={data} on:message={handleMessage} />			 			
 		</div>
 	{/if}
 
