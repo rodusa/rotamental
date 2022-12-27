@@ -17,6 +17,7 @@
 	let chip_value = 0;
 	//let user = {};
 	let todo = '';
+	let errorMsg = '';
 
 	const user = new UserModel("xixi@gmail.com", "123456");
 	
@@ -104,9 +105,8 @@
 			});
 			showForm = false;
 		}
-		if (res.status == 422) {
-			let x = 5;
-			console.log(json.error);
+		if (res.status == 422 && json.error == "Duplicate User" ) {
+			errorMsg = "Email já cadastrado!!!";
 			//alert(res.error);
 		}
 
@@ -118,6 +118,10 @@
 </script>
 
 <form class="my-6" on:submit|preventDefault={handleSubmit} transition:slide>
+	<div class="flex flex-col text-sm mb-2">
+		<label class="font-bold text-sm mb-2 text-red-500 m-auto" for="todo">{errorMsg}</label>
+	</div>
+
 	<div class="flex flex-col text-sm mb-2">
 		<label class="font-bold text-sm mb-2" for="todo">Email</label>
 		<input
