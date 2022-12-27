@@ -25,6 +25,10 @@
 				<a href="/index">Home</a>
 			</li>
 
+			<li class:active={$page.url.pathname === '/signup'}>
+				<a href="/signup?slide=true">Sign Up</a>
+			</li>
+
 			<li class:active={$page.url.pathname === '/objectives'}>
 				<a href="/objectives">Objetivos</a>
 			</li>
