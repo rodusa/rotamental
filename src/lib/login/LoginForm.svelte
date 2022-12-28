@@ -86,7 +86,7 @@
 		// 	});
 
 			//New mode
-				res = await fetch(`${utils.getAPIHostname(url)}/signup`, {
+				res = await fetch(`${utils.getAPIHostname(url)}/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -101,22 +101,25 @@
 
 		if (res.status == 200) {
 			dispatch('message', {
-				text: 'NEW_RECORD_ADDED!'
+				text: 'LOGIN SUCCEED!'
 			});
-			showForm = false;
+			//showForm = false;
 		}
 		if (res.status == 422 && json.error == "Duplicate User" ) {
 			errorMsg = "Email já cadastrado!!!";
 			//alert(res.error);
 		}
 
-		result = JSON.stringify(json);
+		result = json;
 		
 	}
 
 </script>
 
 <form class="my-6" on:submit|preventDefault={handleSubmit} transition:slide>
+	<div class="flex flex-col text-sm mb-2">
+	<h1 class="text-2xl font-bold text-center text-orange-500 md:text-3xl">Login</h1>
+	</div>
 	<div class="flex flex-col text-sm mb-2">
 		<label class="font-bold text-sm mb-2 text-red-500 m-auto" for="todo">{errorMsg}</label>
 	</div>
@@ -135,7 +138,7 @@
 	<div class="flex flex-col text-sm mb-2">
 		<label class="font-bold text-sm mb-2" for="todo">Password</label>
 		<input
-			type="password"
+			type="text"
 			bind:value={user.password}
 			name="todo"
 			placeholder="Watch"
@@ -145,19 +148,19 @@
 
 	
 	
-	<div class="flex flex-row justify-between mx-5 my-5">
+	<div class="flex flex-row justify-between mx-5 my-5 ">
 	<button
-		type="submit"
-		class="w-28 shadow-sm rounded bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 "
+		type="button"
+		class="w-28 shadow-sm rounded bg-orange-400 hover:bg-orange-700 text-white py-2 px-4 "
 		on:click={closeForm}>Cancelar</button
 	>
 	<button
-		type="submit"
-		class="w-28 shadow-sm rounded bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 "
-		on:click={saveRecord}>Salvar</button
+		type="button"
+		class="w-28 shadow-sm rounded bg-orange-400 hover:bg-orange-700 text-white py-2 px-4 "
+		on:click={saveRecord}>Login</button
 	>
 	</div>
-
+		<pre>  {JSON.stringify(result, null, 2)}</pre>
 	<!-- <p>{url.hostname}</p> -->
 	<!-- <button type="button" on:click={openModal} class="btn">Open Modal</button> -->
 </form>

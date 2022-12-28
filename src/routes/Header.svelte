@@ -46,6 +46,7 @@
 	</nav>
 
 	<div>
+		<a href="/login?slide=true">Login</a>
 		{$GLOBAL_CONFIG.name}
 	</div>
 </header>
