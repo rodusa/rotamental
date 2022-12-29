@@ -50,7 +50,7 @@
 	</nav>
 
 	<div>
-		<a href="/login?slide=true">Login</a>
+		<a href="/login?slide=true" target="_self">Login</a>
 		{$GLOBAL_CONFIG.name}
 	</div>
 </header>
