@@ -26,12 +26,16 @@
 			</li>
 
 			<li class:active={$page.url.pathname === '/signup'}>
-				<a href="/signup?slide=true">Sign Up</a>
+				<a href="/signup?slide=true" target="_self">Sign Up</a>
 			</li>
 
 			<li class:active={$page.url.pathname === '/objectives'}>
 				<a href="/objectives">Objetivos</a>
 			</li>
+			
+			<li class:active={$page.url.pathname === '/test'}>
+				<a href="/test">Test</a>
+			</li>			
 			<!-- <li class:active={$page.url.pathname === '/disciplines'}>
 				<a href="/disciplines/117">Disciplines</a>
 			</li> -->

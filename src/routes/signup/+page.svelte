@@ -1,6 +1,6 @@
 <script>
     import {writable} from 'svelte/store';
-    import { onMount } from 'svelte';
+    import { onMount, onDestroy  } from 'svelte';
     import { objectiveItem } from '../../stores/objectiveStore';
     import SignUpForm from "$lib/signup/SignUpForm.svelte"; 
     import Objective from "$lib/objective/ObjectiveItem.svelte"; 
@@ -33,6 +33,13 @@
         response = getData(hostname, true);
         //let x = await $response;
 	});
+
+    onDestroy(async () => {
+        //response = getData(hostname, true);
+        //let x = await $response;
+        let m = "destroy"; 
+	});
+
 
 	function handleMessage(event) {
         response = getData(hostname, false);
