@@ -67,7 +67,9 @@
 		console.log('submitting');
 	};
 
-	async function saveRecord() {		
+	async function Login() {	
+		let x = 5;
+		console.log('login here' + x);	
 		// name = todo;
 		let res = null;	
 		
@@ -89,17 +91,20 @@
 				res = await fetch(`${utils.getAPIHostname(url)}/login`, {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json'					
 				},
 				body: JSON.stringify({
 					username: user.email, password: user.password
 				})
 			});
 		
-
 		const json = await res.json();
 
 		if (res.status == 200) {
+			// let m = res;
+			// res.headers.set('Set-Cookie','test');
+			//res.headers.coset ('x-custom-header', 'potato');
+			//res.cookie('Set-Cookie': 'jwt=OUR_TOKEN_CONTENT; secure; httpOnly; sameSite=Lax');
 			dispatch('message', {
 				text: 'LOGIN SUCCEED!'
 			});
@@ -157,7 +162,7 @@
 	<button
 		type="button"
 		class="w-28 shadow-sm rounded bg-orange-400 hover:bg-orange-700 text-white py-2 px-4 "
-		on:click={saveRecord}>Login</button
+		on:click={Login}>Login</button
 	>
 	</div>
 		<pre>  {JSON.stringify(result, null, 2)}</pre>
