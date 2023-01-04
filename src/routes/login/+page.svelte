@@ -4,7 +4,7 @@
     import { objectiveItem } from '../../stores/objectiveStore';
     import LoginForm from "$lib/login/LoginForm.svelte"; 
     
-    import {getData} from './fetcher.js';
+    //import {getData} from './fetcher.js';
     import { page } from '$app/stores';
     import * as utils from '../../common/utils';
 
@@ -28,14 +28,14 @@
 	}
      
     onMount(async () => {
-        response = getData(hostname, true);
+        //response = getData(hostname, true);
         //let x = await $response;
 	});
 
 	function handleMessage(event) {
-        response = getData(hostname, false);
+        //response = getData(hostname, false);
         //let x = await $response;
-		console.log(event.detail.text);
+		// console.log(event.detail.text);
 	}
 
     //let  result = writable(new Promise(()=>[]));

@@ -1,4 +1,6 @@
 <script>
+     //import cookie from 'cookie';
+    import Cookies from 'js-cookie'
     import {writable} from 'svelte/store';
     import { onMount } from 'svelte';
     import { objectiveItem } from '../../stores/objectiveStore';
@@ -25,9 +27,37 @@
         
 		showForm=true;
 	}
-     
+
+    // async function handleCookies({ request, resolve }) {
+ 	//     const cookies = cookie.parse(request.headers.cookie || '');
+  
+    //     // before endpoint call
+    //     //request.locals.user = cookies[COOKIE_NAME];
+    
+    //     // endpoint call
+    //  }
+
+    //  async function getCookie() {
+    //     const myCookieValue = getCookie("myCookie");
+    // }     
+
+    async function getCookie() {
+            let cookie = (function() {
+                return Cookies.get('token');
+                // other code here
+            })();
+            return cookie;
+            // other code here
+    }
+    
     onMount(async () => {
         response = getData(hostname, true);
+        let c = await getCookie();
+        let m = 5;
+        //const session = cookies.get('session');
+        // let x = Cookies.get('token');
+        // let y = 5;
+        //const cookies = cookie.parse(request.headers.cookie)
         //let x = await $response;
 	});
 

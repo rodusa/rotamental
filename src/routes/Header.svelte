@@ -21,6 +21,9 @@
 				<a href="/">Home</a>
 			</li>
  -->
+			<li>
+				<a href="/login?slide=true" target="_self">Login</a>
+			</li>
 			<li class:active={$page.url.pathname === '/index'}>
 				<a href="/index">Home</a>
 			</li>
@@ -49,8 +52,7 @@
 		</svg>
 	</nav>
 
-	<div>
-		<a href="/login?slide=true" target="_self">Login</a>
+	<div>		
 		{$GLOBAL_CONFIG.name}
 	</div>
 </header>

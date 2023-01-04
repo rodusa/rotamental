@@ -1,4 +1,10 @@
 <script lang="ts">
+	// import * as cookie from "cookie";
+	import type { Actions } from './$types';
+	//import { Cookies  as cookie} from '@sveltejs/kit';
+	// //import { setCookie } from 'svelte-cookie';
+	//import { Cookies } from '@sveltejs/kit-cookies';
+
 	import * as utils from '../../common/utils';
 	import { slide} from "svelte/transition";
 	import { objectiveItem } from '../../stores/objectiveStore';
@@ -12,7 +18,8 @@
 	import { goto } from '$app/navigation';
 	export let showForm = true;
 	const dispatch = createEventDispatcher();	
-	
+	//const cookies = new Cookies();
+
 	let showModal = false;
 	let chip_value = 0;
 	//let user = {};
@@ -67,26 +74,30 @@
 		console.log('submitting');
 	};
 
-	async function Login() {	
+	async function apiLogin () {
+		let _url = `${utils.getAPIHostname(url)}/login`;
+		const res = await fetch("api/login", {
+			method: 'POST',
+			body: JSON.stringify({
+					username: user.email, password: user.password, url: _url
+				}),
+            headers: { 'Content-Type': 'application/json' }
+		})
+		
+		const json = await res.json()
+		result = JSON.stringify(json)
+	}
+
+
+	async function Login() {
+		await apiLogin();
+		return;	
+		
 		let x = 5;
-		console.log('login here' + x);	
+		console.log('login here: ' + x);	
 		// name = todo;
 		let res = null;	
 		
-		// // Edit mode (check if id exists)
-		// if (user.id != undefined) {
-		// 	// Edit mode
-		// 	res = await fetch(`${utils.getAPIHostname(url)}/api/v1/signup/${signup.id}`, {
-		// 	//const res = await fetch(`${utils.getAPIHostname(url)}/api/v1/objectives#create`, {
-		// 		method: 'PUT',
-		// 		headers: {
-		// 			'Content-Type': 'application/json'
-		// 		},
-		// 		body: JSON.stringify({
-		// 			name: objective.name, area: chip_value
-		// 		})
-		// 	});
-
 			//New mode
 				res = await fetch(`${utils.getAPIHostname(url)}/login`, {
 				method: 'POST',
@@ -98,7 +109,7 @@
 				})
 			});
 		
-		const json = await res.json();
+		const json = await res.json();		
 
 		if (res.status == 200) {
 			// let m = res;
@@ -108,8 +119,14 @@
 			dispatch('message', {
 				text: 'LOGIN SUCCEED!'
 			});
+			
+			document.cookie = `token=${json.token}; httpOnly=true; secure=true; sameSite=lax; expires=${new Date(Date.now() + 7 * 60 * 1000).toUTCString()}`;
+			
+			//res.headers = 	headers
+
 			//showForm = false;
 		}
+
 		if (res.status == 422 && json.error == "Duplicate User" ) {
 			errorMsg = "Email já cadastrado!!!";
 			//alert(res.error);
@@ -151,8 +168,6 @@
 		/>
 	</div>
 
-	
-	
 	<div class="flex flex-row justify-between mx-5 my-5 ">
 	<button
 		type="button"
