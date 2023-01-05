@@ -1,12 +1,12 @@
 <script>
     import {writable} from 'svelte/store';
     import { onMount } from 'svelte';
-    import { objectiveItem } from '../../stores/objectiveStore';
+    import { objectiveItem } from '../../../stores/objectiveStore';
     import LoginForm from "$lib/login/LoginForm.svelte"; 
     
     //import {getData} from './fetcher.js';
     import { page } from '$app/stores';
-    import * as utils from '../../common/utils';
+    import * as utils from '../../../common/utils';
 
     let url = $page.url;
     //import { page } from '$app/stores'
