@@ -3,6 +3,16 @@ import * as cookie from "cookie";
 // import { Response } from '@sveltejs/kit';
 
 export async function POST({request}) {
+
+    if (!request || (typeof request === 'object' && Object.keys(request).length === 0) || (typeof request === 'string' && request.trim().length === 0)) {
+        return new Response(JSON.stringify({
+            body: "Error, missing post parameters"
+        }), {
+            status: 404
+        })    
+    }    
+
+
     let body = await request.json();
     console.log('body');
     console.log(body);
