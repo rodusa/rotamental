@@ -3,7 +3,7 @@
 	//import { Cookies  as cookie} from '@sveltejs/kit';
 	// //import { setCookie } from 'svelte-cookie';
 	//import { Cookies } from '@sveltejs/kit-cookies';
-// fixed add slider param to route
+	// fixed add slider param to route
 	import * as utils from '../../common/utils';
 	import { slide} from "svelte/transition";
 	import { objectiveItem } from '../../stores/objectiveStore';
@@ -26,7 +26,7 @@
 	let errorMsg = '';
 
 	const user = new UserModel("xixi@gmail.com", "123456");
-	
+	//debugger;
 	// beforeUpdate(() => {
     // 	alert('beforeUpdate');
 	// })

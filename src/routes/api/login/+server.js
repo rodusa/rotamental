@@ -3,9 +3,10 @@ import * as cookie from "cookie";
 // import { Response } from '@sveltejs/kit';
 
 export async function POST({request}) {
-console.log(request);
 
-    if (!request || (typeof request === 'object' && Object.keys(request).length === 0) || (typeof request === 'string' && request.trim().length === 0)) {
+//console.log(request.body.username);
+//debugger;
+    if (request==null || request== undefined) {
         return new Response(JSON.stringify({
             body: "Error, missing post parameters"
         }), {
