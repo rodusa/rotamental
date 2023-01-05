@@ -1,12 +1,12 @@
 <script>
     import {writable} from 'svelte/store';
     import { onMount } from 'svelte';
-    import { objectiveItem } from '../../stores/objectiveStore';
-    import LoginForm from "$lib/login/LoginForm.svelte"; 
+    //import { objectiveItem } from '../../stores/objectiveStore';
+    // import LoginForm from "$lib/login/LoginForm.svelte"; 
     
     //import {getData} from './fetcher.js';
     import { page } from '$app/stores';
-    import * as utils from '../../common/utils';
+    // import * as utils from '../../common/utils';
 
     let url = $page.url;
     //import { page } from '$app/stores'
@@ -20,10 +20,10 @@
     
     function showAddBox() {
         // RESET FORM to Blank fieldsd
-        if ($objectiveItem) {
-            $objectiveItem.name = '';
-            $objectiveItem.area = 0;
-        }        
+        // if ($objectiveItem) {
+        //     $objectiveItem.name = '';
+        //     $objectiveItem.area = 0;
+        // }        
 		showForm=true;
 	}
      
@@ -54,7 +54,7 @@
 
 	<div
     class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">
-        <LoginForm on:message={handleMessage} bind:showForm={showForm} />
+        <!-- <LoginForm on:message={handleMessage} bind:showForm={showForm} /> -->
     </div>
     {/if}
 
