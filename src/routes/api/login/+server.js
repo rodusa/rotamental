@@ -8,10 +8,9 @@ export async function POST({request}) {
     console.log(body);
 
     let response = await ApiUserAuthenticate(body);
-    
 
     const headers = { 
-        "Set-Cookie": cookie.serialize("token", response.token, {
+        "Set-Cookie": cookie.serialize("jwt", response.token, {
             httpOnly: true,
             sameSite: "lax",
             maxAge: 60 * 60 * 24 * 7,
