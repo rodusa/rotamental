@@ -1,45 +1,5 @@
 <script>
-    import {writable} from 'svelte/store';
-    import { onMount } from 'svelte';
-    //import { objectiveItem } from '../../stores/objectiveStore';
-    // import LoginForm from "$lib/login/LoginForm.svelte"; 
-    
-    //import {getData} from './fetcher.js';
-    // // import { page } from '$app/stores';
-    // // // import * as utils from '../../common/utils';
-
-    // // let url = $page.url;
-    // // //import { page } from '$app/stores'
-
-    // // let slide = $page.url.searchParams.get('slide');
-    // let showForm = slide ? slide : false;
-    //let result = {};
-    let response = writable(new Promise(()=>{}));
-
-    //let hostname = `${utils.getAPIHostname(url)}/api/v1/objectives/#index`
-    
-    function showAddBox() {
-        // RESET FORM to Blank fieldsd
-        // if ($objectiveItem) {
-        //     $objectiveItem.name = '';
-        //     $objectiveItem.area = 0;
-        // }        
-		//showForm=true;
-	}
-     
-    onMount(async () => {
-        //response = getData(hostname, true);
-        //let x = await $response;
-	});
-
-	function handleMessage(event) {
-        //response = getData(hostname, false);
-        //let x = await $response;
-		// console.log(event.detail.text);
-	}
-
-    //let  result = writable(new Promise(()=>[]));
- 
+  
 </script>
 <main class="mt-10 mx-auto max-w-xl">
     <!-- <h1 class="text-2xl font-bold text-center text-orange-500 md:text-3xl">Login</h1> -->
