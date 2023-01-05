@@ -54,7 +54,7 @@
 
 	<div
     class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">
-        <LoginForm on:message={handleMessage} bind:showForm={showForm} />
+        <!-- <LoginForm on:message={handleMessage} bind:showForm={showForm} /> -->
     </div>
     {/if}
 
