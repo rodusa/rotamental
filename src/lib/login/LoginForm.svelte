@@ -1,6 +1,5 @@
 <script lang="ts">
 	// import * as cookie from "cookie";
-	import type { Actions } from './$types';
 	//import { Cookies  as cookie} from '@sveltejs/kit';
 	// //import { setCookie } from 'svelte-cookie';
 	//import { Cookies } from '@sveltejs/kit-cookies';
