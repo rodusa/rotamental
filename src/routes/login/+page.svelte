@@ -5,14 +5,14 @@
     // import LoginForm from "$lib/login/LoginForm.svelte"; 
     
     //import {getData} from './fetcher.js';
-    import { page } from '$app/stores';
-    // import * as utils from '../../common/utils';
+    // // import { page } from '$app/stores';
+    // // // import * as utils from '../../common/utils';
 
-    let url = $page.url;
-    //import { page } from '$app/stores'
+    // // let url = $page.url;
+    // // //import { page } from '$app/stores'
 
-    let slide = $page.url.searchParams.get('slide');
-    let showForm = slide ? slide : false;
+    // // let slide = $page.url.searchParams.get('slide');
+    // let showForm = slide ? slide : false;
     //let result = {};
     let response = writable(new Promise(()=>{}));
 
@@ -24,7 +24,7 @@
         //     $objectiveItem.name = '';
         //     $objectiveItem.area = 0;
         // }        
-		showForm=true;
+		//showForm=true;
 	}
      
     onMount(async () => {
@@ -50,13 +50,6 @@
         on:click={showAddBox}
 		>Sign Up</button>
 	</div> -->
-    {#if showForm}
-
-	<div
-    class="bg-white  shadow-2xl rounded-lg overflow-hidden p-4">
-        <!-- <LoginForm on:message={handleMessage} bind:showForm={showForm} /> -->
-    </div>
-    {/if}
 
 
 
