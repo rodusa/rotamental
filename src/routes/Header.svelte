@@ -22,6 +22,10 @@
 			</li>
  -->
 			<li>
+				<a href="/login" target="_self">Login</a>
+			</li>
+
+			<li>
 				<a href="/login?slide=true" target="_self">Login</a>
 			</li>
 			<li class:active={$page.url.pathname === '/index'}>
