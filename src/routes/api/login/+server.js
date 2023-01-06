@@ -17,6 +17,7 @@ export async function POST({request}) {
             path: "/"
         }),
     };    
+    
     console.log('Endpoint hit');
     console.log(response);
     
